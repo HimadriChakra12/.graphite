@@ -20,6 +20,7 @@ keymap("n", "<Leader>x", ":x<CR>", opts)
 
 -- For Lua (init.lua)
 vim.keymap.set('n', '<leader>e', '<cmd>Exp<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>cc', '<cmd>CompilerMode<CR>', { noremap = true, silent = true })
 -- vim.keymap.set('n', '<leader>e', '<cmd>Explorer<cr>')
 vim.keymap.set('n', '<leader>n', ':enew<CR>', { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { noremap = true, silent = true })

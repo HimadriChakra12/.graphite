@@ -5,7 +5,7 @@ recentrepos:
     - D:\git\Himutil
     - D:\git\My-Userstyles
 startuppopupversion: 5
-lastversion: 0.50.0
+lastversion: 0.51.1
 customcommandshistory:
     - git checkout 2b797519 -- HimUtil.ps1
     - git checkout 73256ae3 -- install.ps1

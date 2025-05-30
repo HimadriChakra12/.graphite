@@ -39,42 +39,42 @@ require("plugins.shell")
 -- require("scope").setup() [Replaced with telescope.nvim]
 
 
-require("zen-mode").setup {
-  window = {
-    backdrop = 0.98,
-    width = 100,  -- adjust width to your liking
-    height = 40,
-  },
-  plugins = {
-    options = {
-      enabled = true,
-      ruler = false,
-      showcmd = false,
-    },
-  },
-}
+ --require("zen-mode").setup {
+ --  window = {
+ --    backdrop = 0.98,
+ --    width = 100,  -- adjust width to your liking
+ --    height = 40,
+ --  },
+ --  plugins = {
+ --    options = {
+ --      enabled = true,
+ --      ruler = false,
+ --      showcmd = false,
+ --    },
+ --  },
+ --}
 -- Auto-enable Goyo for markdown files
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  command = "Goyo",
-})
-
--- Quit Neovim when Goyo is closed (after auto-launch)
-vim.api.nvim_create_autocmd("User", {
-  pattern = "GoyoLeave",
-  callback = function()
-    -- Only quit if the filetype is markdown and we're in Goyo mode
-    if vim.bo.filetype == "markdown" then
-      vim.cmd("q")
-    end
-  end,
-})
-
--- Map :bd to exit Goyo and close buffer + quit nvim if in Goyo mode
-vim.keymap.set("n", ":bd", function()
-  if vim.fn.exists("#User#GoyoEnter") == 1 then
-    vim.cmd("Goyo!")
-  end
-  vim.cmd("bd")
-  vim.cmd("q")
-end, { expr = false })
+--vim.api.nvim_create_autocmd("FileType", {
+--  pattern = "markdown",
+--  command = "Goyo",
+--})
+--
+---- Quit Neovim when Goyo is closed (after auto-launch)
+--vim.api.nvim_create_autocmd("User", {
+--  pattern = "GoyoLeave",
+--  callback = function()
+--    -- Only quit if the filetype is markdown and we're in Goyo mode
+--    if vim.bo.filetype == "markdown" then
+--      vim.cmd("q")
+--    end
+--  end,
+--})
+--
+---- Map :bd to exit Goyo and close buffer + quit nvim if in Goyo mode
+--vim.keymap.set("n", ":bd", function()
+--  if vim.fn.exists("#User#GoyoEnter") == 1 then
+--    vim.cmd("Goyo!")
+--  end
+--  vim.cmd("bd")
+--  vim.cmd("q")
+--end, { expr = false })
