@@ -1,8 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
-    - D:\git\Himutil
-    - D:\git\Pencil
     - C:\Users\himadri\.graphite
+    - D:\git\Pencil
+    - D:\git\Himutil
     - D:\git\My-Userstyles
 startuppopupversion: 5
 lastversion: 0.51.1
