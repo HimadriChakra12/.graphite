@@ -18,7 +18,7 @@ Set-Alias -Name v -Value $EDITOR
 
 # Quick Access to Editing the Profile
 function Edit-Profile {
-    v $PROFILE.CurrentUserAllHosts
+    v $PROFILE
 }
 Set-Alias -Name ep -Value Edit-Profile
 
@@ -98,8 +98,6 @@ function wtf?{
     Start-Process $path
 }
 #"function list{get-childitem | select-object name | format-wide -Auto }"
-function list{ eza --icons  }
-Set-Alias -name ls -value list
 function dirr {
   $items = Get-ChildItem | Select-Object -ExpandProperty Name
   $selected_item = $items | fzf --layout reverse --header "$pwd" --height 60% --preview="eza --color=always {} -T" 
