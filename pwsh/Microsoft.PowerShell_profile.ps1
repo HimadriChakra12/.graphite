@@ -18,7 +18,7 @@ Set-Alias -Name v -Value $EDITOR
 
 # Quick Access to Editing the Profile
 function Edit-Profile {
-    vim $PROFILE.CurrentUserAllHosts
+    v $PROFILE.CurrentUserAllHosts
 }
 Set-Alias -Name ep -Value Edit-Profile
 
@@ -84,4 +84,12 @@ Set-Alias -Name z -Value __zoxide_z -Option AllScope -Scope Global -Force
 Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 Set-Alias -Name gg -Value lazygit -Option AllScope -Scope Global -Force
 Set-Alias -Name ls -Value eza -Option AllScope -Scope Global -Force
-
+function ..{
+    cd ..
+}
+Function ...{
+    .. && ..
+}
+function ....{
+    ... && ..
+}

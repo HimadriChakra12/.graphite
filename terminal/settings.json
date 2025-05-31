@@ -36,16 +36,8 @@
     "keybindings": 
     [
         {
-            "id": "User.copy.644BA8F2",
-            "keys": "ctrl+c"
-        },
-        {
             "id": "User.find",
             "keys": "ctrl+shift+f"
-        },
-        {
-            "id": "User.paste",
-            "keys": "ctrl+v"
         },
         {
             "id": "User.splitPane.A6751878",
@@ -65,9 +57,9 @@
             "colorScheme": "Dark+ (Copy)",
             "font": 
             {
-                "face": "Inconsolata Nerd Font Mono",
-                "size": 10,
-                "weight": "medium"
+                "face": "JetBrainsMono Nerd Font",
+                "size": 9,
+                "weight": "semi-light"
             },
             "opacity": 100,
             "padding": "27",
