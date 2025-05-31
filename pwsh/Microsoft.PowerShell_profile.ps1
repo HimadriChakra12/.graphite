@@ -93,3 +93,40 @@ Function ...{
 function ....{
     ... && ..
 }
+function wtf?{
+    $path = rg --files --no-filename | fzf --height 60% --layout reverse --border
+    Start-Process $path
+}
+#"function list{get-childitem | select-object name | format-wide -Auto }"
+function list{ eza --icons  }
+Set-Alias -name ls -value list
+function dirr {
+  $items = Get-ChildItem | Select-Object -ExpandProperty Name
+  $selected_item = $items | fzf --layout reverse --header "$pwd" --height 60% --preview="eza --color=always {} -T" 
+  if ($selected_item){
+    if (Test-Path -PathType Container $selected_item) {
+    cd $selected_item
+    zo
+ }}}
+set-alias -name dir -value dirr -Option AllScope -Scope Global -Force 
+#function lsd{$Directory = Get-ChildItem -Directory | Select-Object -expandproperty name  | fzf --height 30% --layout reverse --border && cd $Directory}
+function zo {
+
+  $items = Get-ChildItem | Select-Object -ExpandProperty Name
+  $selected_item = $items | fzf --layout reverse --header "$pwd" --height 60% --preview="eza --color=always {} -T"
+
+  if ($selected_item) {
+    if (Test-Path -PathType Container $selected_item) {
+      cd $selected_item
+      Write-Host "($pwd)" -ForegroundColor Yellow
+      zo # Recursively call zo after changing directory
+    } else {
+      Start-Process -FilePath $selected_item
+    }
+  }
+}
+function exp{
+    $location= Get-location
+    explorer $location
+}
+
