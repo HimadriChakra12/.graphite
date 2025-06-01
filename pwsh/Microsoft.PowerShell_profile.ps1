@@ -109,9 +109,8 @@ function dirr {
 set-alias -name dir -value dirr -Option AllScope -Scope Global -Force 
 #function lsd{$Directory = Get-ChildItem -Directory | Select-Object -expandproperty name  | fzf --height 30% --layout reverse --border && cd $Directory}
 function zo {
-
-  $items = Get-ChildItem | Select-Object -ExpandProperty Name
-  $selected_item = $items | fzf --layout reverse --header "$pwd" --height 60% --preview="eza --color=always {} -T"
+  $items = @("..") + (Get-ChildItem | Select-Object -ExpandProperty Name)
+  $selected_item = $items | fzf --layout reverse --header "$pwd" --height 90% --preview="eza --color=always {} -T"
 
   if ($selected_item) {
     if (Test-Path -PathType Container $selected_item) {
