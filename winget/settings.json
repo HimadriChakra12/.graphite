@@ -1,27 +1,27 @@
 {
     "$schema": "https://aka.ms/winget-settings.schema.json",
-
-    // For documentation on these settings, see: https://aka.ms/winget-settings
-    // "source": {
-    //    "autoUpdateIntervalInMinutes": 5
-    // },
-    
     "source": {
-        "autoUpdateIntervalInMinutes": 5
+        "autoUpdateIntervalInMinutes": 15,
+        "forceSourceReset": true
+    },
+    "network": {
+        "disableTelemetry": true,
+        "downloader": "do"
+    },
+    "installBehavior": {
+        "enablePackagePinning": true,
+        "disableInstallNotes": true
     },
     "visual": {
         "progressBar": "retro",
-        "showInstallationNotes": false
+        "retroProgressBar": true,
+        "disableColors": false
     },
-    "installBehavior": {
-        "disableInstallNotes": true,
-        "preferences": {
-            "scope": "machine",
-            "architecture": "x64"
-        }
-    },
-    "telemetry": {
-        "disable": true
+    "experimentalFeatures": {
+        "directMSI": true,
+        "dependencies": true,
+        "uninstallPreviousArgument": true,
+        "configuration": true,
+        "winGetImport": true
     }
-    
 }
