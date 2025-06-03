@@ -126,3 +126,6 @@ function exp{
     $location= Get-location
     explorer $location
 }
+Function yp{
+    set-clipboard $pwd
+}
