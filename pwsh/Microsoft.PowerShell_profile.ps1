@@ -126,4 +126,3 @@ function exp{
     $location= Get-location
     explorer $location
 }
-
