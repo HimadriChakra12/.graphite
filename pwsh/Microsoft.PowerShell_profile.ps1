@@ -107,6 +107,7 @@ function dirr {
     zo
  }}}
 set-alias -name dir -value dirr -Option AllScope -Scope Global -Force 
+set-alias -name c -value clear -Option AllScope -Scope Global -Force 
 #function lsd{$Directory = Get-ChildItem -Directory | Select-Object -expandproperty name  | fzf --height 30% --layout reverse --border && cd $Directory}
 function zo {
   $items = @("..") + (Get-ChildItem | Select-Object -ExpandProperty Name)
@@ -129,3 +130,4 @@ function exp{
 Function yp{
     set-clipboard $pwd
 }
+
