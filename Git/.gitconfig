@@ -70,3 +70,6 @@
 [url "https://github.com/"]
 	insteadof = "gh:"
 
+[safe]
+	directory = D:/Foobar2032
+	directory = D:/git/.dotfiles
