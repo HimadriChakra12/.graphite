@@ -1,6 +1,37 @@
 [user]
 	name = HimadriChakra12
-    email = himadrichakrabortydip@gmail.com
+	email = himadrichakrabortydip@gmail.com
+[core]
+	compression = 9
+	whitespace = error
+	preloadindex = true
+
+[init]
+	defaultBranch = master
+
+[status]
+	branch = true
+	showStash = true
+	showUntrackedFiles = true
+
+[diff]
+	context = 3
+	renames = copies
+	interHunkContext = 10
+    colorMoved = default
+
+[push]
+	autoSetupRemote = true
+	default = current
+	followTags = true
+
+[pull]
+	default = current
+	rebase = true
+
+[rebase]
+	autoStash = true
+
 
 [alias]
   st = status
@@ -39,20 +70,3 @@
 [url "https://github.com/"]
 	insteadof = "gh:"
 
-[status]
-	branch = true
-	showStash = true
-	showUntrackedFiles = true
-
-[diff]
-    colorMoved = default
-
-[interactive]
-    diffFilter = delta --color-only
-
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
