@@ -8,7 +8,7 @@ require('neogit').setup{}
 require('buffer-manager').setup{}
 --require('markdown-preview').setup{}
 --require('headlines').setup{}
-
+-- Example Treesitter configuration (adjust based on your actual setup)
 -- /csode/..
 require("csode.options")
 require("csode.local").load() -- Load local plugins
