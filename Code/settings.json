@@ -1,11 +1,17 @@
 {
+    "css.validate": false,
+    "less.validate": false,
+    "php.validate.enable": false,
+    "scss.validate": false,
+    "editor.accessibilitySupport": "off",
+    "editor.copyWithSyntaxHighlighting": false,
+    "extensions.ignoreRecommendations": true,
+    "update.enableWindowsBackgroundUpdates": false,
+    "workbench.enableExperiments": false,
     "workbench.colorTheme": "Gruvbox Material Dark",
-    "workbench.iconTheme": "gruvbox-material-icon-theme",
-    "workbench.productIconTheme": "icons-carbon",
     "workbench.activityBar.location": "top",
     "window.customTitleBarVisibility": "never",
-    "security.workspace.trust.untrustedFiles": "open"
-    "editor.copyWithSyntaxHighlighting": false,
+    "security.workspace.trust.untrustedFiles": "open",
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.emptySelectionClipboard": false,
     "workbench.editor.enablePreview": false,
@@ -15,7 +21,6 @@
     "diffEditor.renderSideBySide": false,
     "editor.snippetSuggestions": "top",
     "editor.detectIndentation": false,
-    "window.nativeFullScreen": true,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "editor.minimap.enabled": false,
@@ -28,7 +33,6 @@
     "editor.matchBrackets": "never",
     "workbench.tips.enabled": false,
     "editor.colorDecorators": false,
-    "git.decorations.enabled": false,
     "workbench.startupEditor": "none",
     "editor.lightbulb.enabled": "off",
     "editor.selectionHighlight": false,
@@ -46,123 +50,254 @@
     "editor.gotoLocation.multipleTypeDefinitions": "goto",
     "editor.scrollbar.vertical": "hidden",
     "window.titleBarStyle": "custom",
-    "editor.fontFamily": "Jetbrains Mono",
+    "editor.fontFamily": "JetBrains Mono",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["<space>","w"],
-            "commands": [":w"] // Save
+            "before": [
+                "<space>",
+                "w"
+            ],
+            "commands": [
+                ":w"
+            ] // Save
         },
         {
-            "before": ["<space>","q"],
-            "commands": [":q"] // Quit
+            "before": [
+                "<space>",
+                "q"
+            ],
+            "commands": [
+                ":q"
+            ] // Quit
         },
         {
-            "before": ["<space>","g","g"],
-            "commands": ["gg"] // Go to top
+            "before": [
+                "<space>",
+                "g",
+                "g"
+            ],
+            "commands": [
+                "gg"
+            ] // Go to top
         },
         {
-            "before": ["<space>","v"], // Example: Vertical split
-            "commands": [":vsplit"]
+            "before": [
+                "<space>",
+                "v"
+            ], // Example: Vertical split
+            "commands": [
+                ":vsplit"
+            ]
         },
         {
-            "before": ["<space>","h"], // Example: Horizontal split
-            "commands": [":split"]
+            "before": [
+                "<space>",
+                "h"
+            ], // Example: Horizontal split
+            "commands": [
+                ":split"
+            ]
         },
         //Periscope
         {
-            "before": ["<space>","p","f","f"],
-            "commands": ["fuzzy-finder.find"]
+            "before": [
+                "<space>",
+                "p",
+                "f",
+                "f"
+            ],
+            "commands": [
+                "fuzzy-finder.find"
+            ]
         },
         {
-            "before":["<space","f","/"],
-            "commands": ["fuzzily.fzf"]
+            "before": [
+                "<space",
+                "f",
+                "/"
+            ],
+            "commands": [
+                "fuzzily.fzf"
+            ]
         },
         //autojump
         {
-            "before": ["<space>","z"],
-            "commands": ["zoxide-like.jump"]
+            "before": [
+                "<space>",
+                "z"
+            ],
+            "commands": [
+                "zoxide-like.jump"
+            ]
         },
         {
-            "before": ["<space>","c","d"],
-            "commands": ["zoxcode.jump"]
+            "before": [
+                "<space>",
+                "c",
+                "d"
+            ],
+            "commands": [
+                "zoxcode.jump"
+            ]
         },
         {
-            "before": ["<space>","n"], // Example: New tab
-            "commands": ["extension.advancedNewFile"]
+            "before": [
+                "<space>",
+                "n"
+            ], // Example: New tab
+            "commands": [
+                "extension.advancedNewFile"
+            ]
         },
         {
-            "before": ["<space","n","n"],
-            "commads": ["workbench.action.reopenClosedEditor"]
+            "before": [
+                "<space",
+                "n",
+                "n"
+            ],
+            "commads": [
+                "workbench.action.reopenClosedEditor"
+            ]
         },
         {
-            "before": ["<space>","b"],
-            "commands": ["workbench.action.quickOpen"] // Telescope buffers (if installed)
+            "before": [
+                "<space>",
+                "b"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ] // Telescope buffers (if installed)
         },
         {
-            "before": [":","!"],
-            "commands": [":split, :terminal"]
+            "before": [
+                ":",
+                "!"
+            ],
+            "commands": [
+                ":split, :terminal"
+            ]
         },
         {
-            "before": ["<space>","f","e"],
-            "commands": ["workbench.view.explorer"]
+            "before": [
+                "<space>",
+                "f",
+                "e"
+            ],
+            "commands": [
+                "workbench.view.explorer"
+            ]
         },
         {
-            "before": ["<space>","t","h"],
-            "commands": ["workbench.action.selectTheme:w"]
+            "before": [
+                "<space>",
+                "t",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.selectTheme:w"
+            ]
         },
         {
-            "before": ["<space>","p"],
-            "commands": ["workbench.action.showcommands"]
+            "before": [
+                "<space>",
+                "p"
+            ],
+            "commands": [
+                "workbench.action.showcommands"
+            ]
         },
         {
-            "before": ["<space>","g","r"],
-            "commands": ["workbench.action.quickTextSearch"]
+            "before": [
+                "<space>",
+                "g",
+                "r"
+            ],
+            "commands": [
+                "workbench.action.quickTextSearch"
+            ]
         },
         {
-            "before": ["<space>","o"],
-            "commands": ["workbench.action.quickOpen"]
+            "before": [
+                "<space>",
+                "o"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
         },
         {
-            "before": ["<space>","c","f"],
-            "after": ["g","g","V","G","y"]
+            "before": [
+                "<space>",
+                "c",
+                "f"
+            ],
+            "after": [
+                "g",
+                "g",
+                "V",
+                "G",
+                "y"
+            ]
         },
         {
-            "before": ["<space>","c","p"],
-            "commands": ["copyFilePath"]
+            "before": [
+                "<space>",
+                "c",
+                "p"
+            ],
+            "commands": [
+                "copyFilePath"
+            ]
         },
         {
-            "before": ["<space>","m","v"],
-            "commands": ["preview-vscode.showPreviewToSide"]
+            "before": [
+                "<space>",
+                "m",
+                "v"
+            ],
+            "commands": [
+                "preview-vscode.showPreviewToSide"
+            ]
         },
         {
-            "before": ["<space>","w","r","i","t","e"],
-            "after": ["g","g","V","G","d","i"]
+            "before": [
+                "<space>",
+                "w",
+                "r",
+                "i",
+                "t",
+                "e"
+            ],
+            "after": [
+                "g",
+                "g",
+                "V",
+                "G",
+                "d",
+                "i"
+            ]
         },
     ],
-
-
     "vim.insertModeKeyBindingsNonRecursive": [
-    {
-        "command": "workbench.action.toggleSidebarVisibility",
-        "when": "editorTextFocus"
-    }
+        {
+            "command": "workbench.action.toggleSidebarVisibility",
+            "when": "editorTextFocus"
+        }
     ],
-
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": ["<space>","n"], // Or any other keybinding you prefer
-            "commands": ["ctrl+O"]
+            "before": [
+                "<space>",
+                "n"
+            ], // Or any other keybinding you prefer
+            "commands": [
+                "ctrl+O"
+            ]
         }
-
     ],
-    "vim.statusBarColorControl": true, // Change status bar color based on mode
-        "vim.commandLineModeKeyBindings": [
-
-        ],
-        "vim.commandLineModeKeyBindingsNonRecursive": [
-
-        ],
-        "window.menuBarVisibility": "compact",
-        "window.commandCenter": false,
-
-    }
+    "vim.statusBarColorControl": false, // Change status bar color based on mode
+    "vim.commandLineModeKeyBindings": [],
+    "vim.commandLineModeKeyBindingsNonRecursive": [],
+    "window.menuBarVisibility": "compact",
+    "window.commandCenter": false,
+    "workbench.colorCustomizations": false;
