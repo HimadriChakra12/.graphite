@@ -1,0 +1,36 @@
+{
+ "data" : {
+           "RememberRelativeDialogLocator-AddLinksProgress"                                                           : {
+                                                                                                                         "extendedState" : null,
+                                                                                                                         "lastAccess"    : 1750483223290,
+                                                                                                                         "type"          : "relative",
+                                                                                                                         "x"             : 552,
+                                                                                                                         "y"             : 371,
+                                                                                                                         "valid"         : true
+                                                                                                                        },
+           "RememberLastDimensor-AddLinksDialog"                                                                      : {
+                                                                                                                         "extendedState" : null,
+                                                                                                                         "lastAccess"    : 1750483219559,
+                                                                                                                         "type"          : null,
+                                                                                                                         "x"             : 804,
+                                                                                                                         "y"             : 858,
+                                                                                                                         "valid"         : true
+                                                                                                                        },
+           "RememberRelativeDialogLocator-AddLinksDialog"                                                             : {
+                                                                                                                         "extendedState" : null,
+                                                                                                                         "lastAccess"    : 1750483219559,
+                                                                                                                         "type"          : "relative",
+                                                                                                                         "x"             : 793,
+                                                                                                                         "y"             : 0,
+                                                                                                                         "valid"         : true
+                                                                                                                        },
+           "RememberRelativeDialogLocator-org.jdownloader.gui.mainmenu.DonateAction-a2bfb37b88df254fd6f47c2746a26235" : {
+                                                                                                                         "extendedState" : null,
+                                                                                                                         "lastAccess"    : 1750483280451,
+                                                                                                                         "type"          : "relative",
+                                                                                                                         "x"             : 793,
+                                                                                                                         "y"             : 0,
+                                                                                                                         "valid"         : true
+                                                                                                                        }
+          }
+}
