@@ -25,12 +25,7 @@ Set-Alias -Name ep -Value Edit-Profile
 function touch($file) { "" | Out-File $file -Encoding ASCII }
 # System Utilities
 function admin {
-    if ($args.Count -gt 0) {
-        $argList = $args -join ' '
-        Start-Process wt -Verb runAs -ArgumentList "pwsh.exe -NoExit -Command $argList"
-    } else {
-        Start-Process wt -Verb runAs
-    }
+    sudo pwsh
 }
 
 # Set UNIX-like aliases for the admin command, so sudo <command> will run the command with elevated rights.
@@ -130,4 +125,3 @@ function exp{
 Function yp{
     set-clipboard $pwd
 }
-
