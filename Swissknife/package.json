@@ -10,4 +10,8 @@
 		"name":	"Jdownloader 2",
 		"id":	"jdownloader",
 		"version":	""
+	}, {
+		"name":	"AltDrag",
+		"id":	"altdrag",
+		"version":	"1.1"
 	}]
