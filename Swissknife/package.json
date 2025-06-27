@@ -14,4 +14,68 @@
 		"name":	"AltDrag",
 		"id":	"altdrag",
 		"version":	"1.1"
+	}, {
+		"name":	"Lite XL",
+		"id":	"litexl",
+		"version":	""
+	}, {
+		"name":	"Neovim",
+		"id":	"nvim",
+		"version":	"0.11.2"
+	}, {
+		"name":	"Localsend",
+		"id":	"localsend",
+		"version":	"1.17.0"
+	}, {
+		"name":	"Microsoft Powertoys",
+		"id":	"powertoys",
+		"version":	"0.91.1"
+	}, {
+		"name":	"Python 3",
+		"id":	"python3",
+		"version":	"3.13.5"
+	}, {
+		"name":	"qimgv",
+		"id":	"qimgv",
+		"version":	"1.0.2"
+	}, {
+		"name":	"Teracopy",
+		"id":	"teracopy",
+		"version":	"3.17"
+	}, {
+		"name":	"Twinkle Tray",
+		"id":	"twinkletray",
+		"version":	"1.16.7"
+	}, {
+		"name":	"Microsoft Direct X",
+		"id":	"directx",
+		"version":	"9.29.1974.1"
+	}, {
+		"name":	"Fxsound",
+		"id":	"fxsound",
+		"version":	"1.1.33.0"
+	}, {
+		"name":	"Github CLI",
+		"id":	"gh",
+		"version":	"1.14.0"
+	}, {
+		"name":	"Legcord",
+		"id":	"legcord",
+		"version":	"1.1.5"
+	}, {
+		"name":	"VLC Media Player",
+		"id":	"vlc",
+		"version":	"3.0.21"
+	}, {
+		"name":	"Firefox",
+		"id":	"firefox",
+		"version":	""
+	}, {
+		"name":	"GlazeWM",
+		"id":	"glazewm",
+		"version":	"3.9.0"
+	}, {
+		"name":	"Windows Powershell",
+		"id":	"powershell",
+		"version":	"7.5.2"
 	}]
