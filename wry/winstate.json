@@ -38,20 +38,23 @@
 			"path":	"HKEY_CLASSES_ROOT\\Directory\\background\\shell\\Powershell",
 			"command":	"powershell.exe -noexit -command Set-Location -literalPath '%V'"
 		}, {
-			"name":	"Open with VSCode (background)",
+			"name":	"Open with VSCode",
 			"path":	"HKEY_CLASSES_ROOT\\Directory\\background\\shell\\VSCode",
-			"command":	"\"C:\\\\Users\\\\HIM\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe\" \"%V\"",
-			"icon":	"C:\\\\Users\\\\HIM\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe"
+			"command":	"\"C:\\\\Users\\\\HIM\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe\" \"%V\""
 		}, {
 			"name":	"Encryption - Decrypt",
 			"path":	"HKEY_CLASSES_ROOT\\Directory\\shell\\UpdateEncryptionSettings\\Shell\\Decrypt",
 			"command":	"{5B6D1451-B1E1-4372-90F5-88E541B4DAB9}",
 			"icon":	"edputil.dll,-1002"
 		}],
-	"reg_files":	[],
+	"reg_files":	[
+        {
+            "C:\Users\himadri\.graphite\Reg\Context Menu.reg"
+        }
+    ],
 	"copy":	[],
 	"startup":	[],
-	"hostname":	"",
+	"hostname":	"graphity",
 	"timezone":	"",
 	"hooks":	{
 	},
