@@ -1,0 +1,62 @@
+{
+	"registry":	[{
+			"name":	"Disable CapsLock",
+			"path":	"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Keyboard Layout",
+			"value_name":	"Scancode Map",
+			"value_type":	"REG_BINARY",
+			"value_data":	"00000000000000000300000001003a0000000000"
+		}, {
+			"name":	"Add to VLC media player's Playlist",
+			"path":	"HKEY_CLASSES_ROOT\\Directory\\shell\\AddToPlaylistVLC",
+			"command":	"\"C:\\\\Program Files\\\\VideoLAN\\\\VLC\\\\vlc.exe\" --started-from-file --playlist-enqueue \"%1\"",
+			"icon":	"C:\\\\Program Files\\\\VideoLAN\\\\VLC\\\\vlc.exe"
+		}, {
+			"name":	"Play with VLC media player",
+			"path":	"HKEY_CLASSES_ROOT\\Directory\\shell\\PlayWithVLC",
+			"command":	"\"C:\\\\Program Files\\\\VideoLAN\\\\VLC\\\\vlc.exe\" --started-from-file --no-playlist-enqueue \"%1\"",
+			"icon":	"C:\\\\Program Files\\\\VideoLAN\\\\VLC\\\\vlc.exe"
+		}, {
+			"name":	"Upload with ShareX",
+			"path":	"HKEY_CLASSES_ROOT\\Directory\\shell\\ShareX",
+			"command":	"\"C:\\\\Program Files\\\\ShareX\\\\ShareX.exe\" \"%1\"",
+			"icon":	"C:\\\\Program Files\\\\ShareX\\\\ShareX.exe"
+		}, {
+			"name":	"Open with VSCode",
+			"path":	"HKEY_CLASSES_ROOT\\Directory\\shell\\VSCode",
+			"command":	"\"C:\\\\Users\\\\HIM\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe\" \"%V\"",
+			"icon":	"C:\\\\Users\\\\HIM\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe"
+		}, {
+			"name":	"Open In Terminal",
+			"path":	"HKEY_CLASSES_ROOT\\Directory\\background\\shell\\WindowsTerminalHere",
+			"command":	"%LOCALAPPDATA%\\Microsoft\\WindowsApps\\wt.exe -d \"%V\""
+		}, {
+			"name":	"CMD Here",
+			"path":	"HKEY_CLASSES_ROOT\\Directory\\background\\shell\\cmd",
+			"command":	"cmd.exe /s /k pushd \"%V\""
+		}, {
+			"name":	"PowerShell Here",
+			"path":	"HKEY_CLASSES_ROOT\\Directory\\background\\shell\\Powershell",
+			"command":	"powershell.exe -noexit -command Set-Location -literalPath '%V'"
+		}, {
+			"name":	"Open with VSCode (background)",
+			"path":	"HKEY_CLASSES_ROOT\\Directory\\background\\shell\\VSCode",
+			"command":	"\"C:\\\\Users\\\\HIM\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe\" \"%V\"",
+			"icon":	"C:\\\\Users\\\\HIM\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe"
+		}, {
+			"name":	"Encryption - Decrypt",
+			"path":	"HKEY_CLASSES_ROOT\\Directory\\shell\\UpdateEncryptionSettings\\Shell\\Decrypt",
+			"command":	"{5B6D1451-B1E1-4372-90F5-88E541B4DAB9}",
+			"icon":	"edputil.dll,-1002"
+		}],
+	"reg_files":	[],
+	"copy":	[],
+	"startup":	[],
+	"hostname":	"",
+	"timezone":	"",
+	"hooks":	{
+	},
+	"git_repo":	"",
+	"choco":	["yt-dlp", "msys2"],
+	"scoop":	["libresprite", "caret"],
+	"winget":	[]
+}
