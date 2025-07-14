@@ -47,11 +47,7 @@
 			"command":	"{5B6D1451-B1E1-4372-90F5-88E541B4DAB9}",
 			"icon":	"edputil.dll,-1002"
 		}],
-	"reg_files":	[
-        {
-            "C:\Users\himadri\.graphite\Reg\Context Menu.reg"
-        }
-    ],
+	"reg_files":	[],
 	"copy":	[],
 	"startup":	[],
 	"hostname":	"graphity",
@@ -61,5 +57,6 @@
 	"git_repo":	"",
 	"choco":	["yt-dlp", "msys2"],
 	"scoop":	["libresprite", "caret"],
-	"winget":	[]
+	"winget":	[],
+	"wallpaper":	"C:\\Users\\himadri\\.graphite\\Wallpaper\\Gruvbox\\typewriter.jpg"
 }
