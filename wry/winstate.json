@@ -55,7 +55,7 @@
 	"hooks":	{
 	},
 	"git_repo":	"",
-	"choco":	["yt-dlp", "msys2"],
+	"choco":	["yt-dlp", "msys2", "wincdemu"],
 	"scoop":	["libresprite", "caret"],
 	"winget":	[],
 	"wallpaper":	"C:\\Users\\himadri\\.graphite\\Wallpaper\\Gruvbox\\typewriter.jpg"
