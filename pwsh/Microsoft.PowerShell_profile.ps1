@@ -125,3 +125,11 @@ function exp{
 Function yp{
     set-clipboard $pwd
 }
+function pin{
+    "$pwd" | add-content ~/pindir.txt
+}
+function tui{taskkill /im explorer.exe /f}
+function kill ($taskname){taskkill /im $taskname /f}
+function pst { Get-Clipboard }
+function cpy { Set-Clipboard $args[0] }
+function zp { cd $(cat ~/pindir.txt | fzf)}
