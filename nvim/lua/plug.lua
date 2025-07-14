@@ -28,5 +28,6 @@ require("plugins.zox").setup()
 require("plugins.termim").setup()
 require("plugins.gcc")
 require("plugins.shell")
+require("plugins.html").setup()
 
 -- require("goyomd")
