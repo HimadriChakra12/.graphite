@@ -34,7 +34,10 @@ local function build_html_with_cursor(parts, index, indent_level)
   local cursor_row = 1
   local cursor_col = 0
 
-  if parts[index + 1] then
+  local is_one_liner = ({ li = true, span = true, b = true, i = true, strong = true, em = true })[part.tag]
+
+  local has_children = parts[index + 1] ~= nil
+  if has_children then
     local result = build_html_with_cursor(parts, index + 1, indent_level + 1)
     inner_lines = result.lines
     cursor_row = result.cursor_row + 1
@@ -45,19 +48,32 @@ local function build_html_with_cursor(parts, index, indent_level)
   local inner_indent = string.rep("  ", indent_level + 1)
 
   local lines = {}
-  for _ = 1, part.count do
-    table.insert(lines, indent .. string.format("<%s%s>", part.tag, attr_str))
-    for _, l in ipairs(inner_lines) do
-      table.insert(lines, inner_indent .. l)
+  if not has_children and is_one_liner then
+    for _ = 1, part.count do
+      local line = indent .. string.format("<%s%s></%s>", part.tag, attr_str, part.tag)
+      table.insert(lines, line)
     end
-    table.insert(lines, indent .. string.format("</%s>", part.tag))
+    -- Place cursor between >< of the first one-liner
+    local before = string.format("<%s%s>", part.tag, attr_str)
+    return {
+      lines = lines,
+      cursor_row = 1,
+      cursor_col = #indent + #before,
+    }
+  else
+    for _ = 1, part.count do
+      table.insert(lines, indent .. string.format("<%s%s>", part.tag, attr_str))
+      for _, l in ipairs(inner_lines) do
+        table.insert(lines, inner_indent .. l)
+      end
+      table.insert(lines, indent .. string.format("</%s>", part.tag))
+    end
+    return {
+      lines = lines,
+      cursor_row = 2,
+      cursor_col = indent:len()
+    }
   end
-
-  return {
-    lines = lines,
-    cursor_row = 2,
-    cursor_col = indent:len()
-  }
 end
 
 local function expand_tag()
@@ -103,7 +119,7 @@ local function expand_tag()
 end
 
 function M.setup()
-    vim.keymap.set("i", ">", function()
+    vim.keymap.set("i", "`", function()
         return expand_tag()
     end, { expr = true, desc = "HTML expand with cursor inside outer tag" })
 end
