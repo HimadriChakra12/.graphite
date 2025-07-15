@@ -175,7 +175,7 @@ function vb {
 
         [string]$ISO,
         [string]$OSType,
-        [string]$Type = "gui"
+        [string]$Type = "gui",
         [string]$json
     )
 
@@ -248,4 +248,27 @@ function vb {
             Write-Host "  vb types                     # list available OS types"
         }
     }
+}
+function env {
+    param(
+    [string]$NewPath
+)
+
+if (-not $NewPath) {
+    Write-Host "Usage: .\AddToPath.ps1 -NewPath <folder_path>"
+    exit 1
+}
+
+# Get current user PATH
+$currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
+
+# Check if path already exists (case-insensitive)
+if ($currentPath.Split(';') -contains $NewPath) {
+    Write-Host "Path already exists in the user PATH variable."
+} else {
+    # Append new path
+    $newPathValue = $currentPath + ";" + $NewPath
+    [Environment]::SetEnvironmentVariable("Path", $newPathValue, "User")
+    Write-Host "Path added to user PATH variable. You may need to restart your session for changes to take effect."
+}
 }
