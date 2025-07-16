@@ -180,19 +180,15 @@ function vb {
     )
 
     switch ($Command.ToLower()) {
-
         "types" {
             VBoxManage list ostypes
         }
-
         "start"     { if ($VMName) { VBoxManage startvm "$VMName" --type=$Type } else { Write-Host "Missing VM name." } }
         "stop"      { if ($VMName) { VBoxManage controlvm "$VMName" acpipowerbutton } else { Write-Host "Missing VM name." } }
         "poweroff"  { if ($VMName) { VBoxManage controlvm "$VMName" poweroff } else { Write-Host "Missing VM name." } }
         "list"      { VBoxManage list vms }
         "info"      { if ($VMName) { VBoxManage showvminfo "$VMName" } else { Write-Host "Missing VM name." } }
         "delete"    { if ($VMName) { VBoxManage unregistervm "$VMName" --delete } else { Write-Host "Missing VM name." } }
-
-
         "create" {
             if ($json) {
                 if (-not (Test-Path $json)) {
