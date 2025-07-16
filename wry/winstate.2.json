@@ -21,6 +21,10 @@
 			"command":	"\"C:\\\\Program Files\\\\ShareX\\\\ShareX.exe\" \"%1\"",
 			"icon":	"C:\\\\Program Files\\\\ShareX\\\\ShareX.exe"
 		}, {
+			"name":	"Open with VSCode",
+			"path":	"HKEY_CLASSES_ROOT\\Directory\\shell\\VSCode",
+			"command":	"\"C:\\\\Users\\\\HIM\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe\" \"%V\""
+		}, {
 			"name":	"Open In Terminal",
 			"path":	"HKEY_CLASSES_ROOT\\Directory\\background\\shell\\WindowsTerminalHere",
 			"command":	"%LOCALAPPDATA%\\Microsoft\\WindowsApps\\wt.exe -d \"%V\""
