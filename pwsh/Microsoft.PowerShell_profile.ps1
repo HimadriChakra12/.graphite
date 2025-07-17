@@ -126,7 +126,8 @@ Function yp{
     set-clipboard $pwd
 }
 function pin{
-    "$pwd" | add-content ~/pindir.txt
+    "$pwd" | add-content ~/pindir.txt;
+    nvim ~/pindir.txt
 }
 function tui{taskkill /im explorer.exe /f}
 function kill ($taskname){taskkill /im $taskname /f}
@@ -247,24 +248,24 @@ function vb {
 }
 function env {
     param(
-    [string]$NewPath
-)
+            [string]$NewPath
+         )
 
-if (-not $NewPath) {
-    Write-Host "Usage: .\AddToPath.ps1 -NewPath <folder_path>"
-    exit 1
-}
+        if (-not $NewPath) {
+            Write-Host "Usage: .\AddToPath.ps1 -NewPath <folder_path>"
+                exit 1
+        }
 
 # Get current user PATH
-$currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
+    $currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
 
 # Check if path already exists (case-insensitive)
-if ($currentPath.Split(';') -contains $NewPath) {
-    Write-Host "Path already exists in the user PATH variable."
-} else {
-    # Append new path
-    $newPathValue = $currentPath + ";" + $NewPath
-    [Environment]::SetEnvironmentVariable("Path", $newPathValue, "User")
-    Write-Host "Path added to user PATH variable. You may need to restart your session for changes to take effect."
-}
+        if ($currentPath.Split(';') -contains $NewPath) {
+            Write-Host "Path already exists in the user PATH variable."
+        } else {
+# Append new path
+            $newPathValue = $currentPath + ";" + $NewPath
+                [Environment]::SetEnvironmentVariable("Path", $newPathValue, "User")
+                Write-Host "Path added to user PATH variable. You may need to restart your session for changes to take effect."
+        }
 }
