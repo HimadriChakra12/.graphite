@@ -119,7 +119,6 @@ local function show_dashboard()
         local content = vim.list_extend({}, header)
         vim.list_extend(content, pin_lines) 
         table.insert(content, "")
-        table.insert(content, "")
         table.insert(content, "  Recent:")
 
         for _, item in ipairs(recent_files) do
