@@ -5,14 +5,6 @@ local function show_dashboard()
     -- Define color highlight groups
     vim.cmd([[
       highlight! DashboardHeader guifg=#b8bb26 ctermfg=75
-      highlight! DashboardLuaFile guifg=#fb4934 ctermfg=75
-      highlight! DashboardCFile guifg=#35b8c5 ctermfg=75
-      highlight! DashboardPsFile guifg=#83a597 ctermfg=75
-      highlight! DashboardPythonFile guifg=#FFD43B ctermfg=220
-      highlight! DashboardTextFile guifg=#A6E3A1 ctermfg=114
-      highlight! DashboardConfigFile guifg=#CBA6F7 ctermfg=183
-      highlight! DashboardNumber guifg=#F38BA8 ctermfg=211
-      highlight! DashboardBrackets guifg=#9399B2 ctermfg=247
     ]])
 
     -- Dashboard header
@@ -31,11 +23,23 @@ local function show_dashboard()
       "                  Neovim " .. vim.version().major .. "." .. vim.version().minor,
       "",
       "",
-      "  [e] Open Init.lua",
       "  [o],[Enter] Open the file.",
       "",
     
     }
+
+    local pinner = require("plugins.pin")
+    local pins = pinner.get_pins()
+
+    -- Prepare pins display lines
+    local pin_lines = { "  Pinned" }
+    if #pins == 0 then
+      table.insert(pin_lines, "  No files pinned.")
+    else
+      for i, pin in ipairs(pins) do
+        table.insert(pin_lines, string.format("  %s. [%s]", pin.key, vim.fn.fnamemodify(pin.path, ":~")))
+      end
+    end
 
     -- Get recent files (last 10 accessible files)
     local recent_files = {}
@@ -73,19 +77,19 @@ local function show_dashboard()
 
     -- Create buffer
     local buf = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_buf_set_name(buf, "dashboard")
+    vim.api.nvim_buf_set_name(buf, "Welcome, Himadri")
     vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
     vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
     vim.api.nvim_buf_set_option(buf, 'swapfile', false)
-    vim.api.nvim_buf_set_option(buf, 'filetype', 'dashboard')
+    vim.api.nvim_buf_set_option(buf, 'filetype', 'Sayo')
     vim.api.nvim_buf_set_option(buf, 'number', false) -- Turn off line numbers
     vim.api.nvim_buf_set_option(buf, 'relativenumber', false) -- Turn off relative numbers
 
     -- Build content
     local content = vim.list_extend({}, header)
+    vim.list_extend(content, pin_lines) 
     table.insert(content, "")
-    table.insert(content, "  Recent Files:")
-    table.insert(content, "")
+    table.insert(content, "  Recent:")
     
     for _, item in ipairs(recent_files) do
       table.insert(content, item.text)
@@ -105,10 +109,7 @@ local function show_dashboard()
     -- Recent files highlights
     local line_num = #header + 3
     for _, item in ipairs(recent_files) do
-      vim.api.nvim_buf_add_highlight(buf, -1, item.color, line_num, 0, -1)
-      vim.api.nvim_buf_add_highlight(buf, -1, 'DashboardNumber', line_num, 2, #tostring(item.text:match("%d+"))+2)
-      vim.api.nvim_buf_add_highlight(buf, -1, 'DashboardBrackets', line_num, #tostring(item.text:match("%d+"))+4, #tostring(item.text:match("%d+"))+5)
-      vim.api.nvim_buf_add_highlight(buf, -1, 'DashboardBrackets', line_num, #item.text-1, #item.text)
+      vim.api.nvim_buf_add_highlight(buf, -1, item.color, line_num, 0, 0)
       line_num = line_num + 1
     end
     

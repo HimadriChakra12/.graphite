@@ -29,5 +29,6 @@ require("plugins.termim").setup()
 require("plugins.gcc")
 require("plugins.shell")
 require("plugins.html").setup()
+require("plugins.pin")
 
 -- require("goyomd")
