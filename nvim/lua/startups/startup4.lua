@@ -23,7 +23,6 @@ local function show_dashboard()
       "                  Neovim " .. vim.version().major .. "." .. vim.version().minor,
       "",
       "",
-      "  [o],[Enter] Open the file.",
       "",
     
     }
@@ -71,7 +70,10 @@ local function show_dashboard()
     -- Footer with commands
     local footer = {
       "",
-      "  [n]ew File [h]elp [q]uit",
+      "  [n] New File",
+      "  [h] Help",
+      "  [q] Quit",
+      "  [o],[Enter] Open the file.",
       "",
     }
 
