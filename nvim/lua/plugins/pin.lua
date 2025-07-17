@@ -1,6 +1,6 @@
 local M = {}
 
-local pin_file = vim.fn.stdpath("data") .. "/pinner.json"
+pin_file = vim.fn.stdpath("config") .. "/pinner.json"
 
 local function load_pins()
   local f = io.open(pin_file, "r")
