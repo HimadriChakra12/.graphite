@@ -1,6 +1,6 @@
 local M = {}
 
-pin_file = vim.fn.stdpath("config") .. "/pinner.json"
+pin_file = vim.fn.stdpath("config") .. "/pin.json"
 
 local function load_pins()
   local f = io.open(pin_file, "r")
@@ -19,7 +19,7 @@ local function save_pins(pins)
   end
 end
 
-vim.api.nvim_create_user_command("PinFile", function(opts)
+vim.api.nvim_create_user_command("Pin", function(opts)
   local pins = load_pins()
   local key = nil
   local path = nil
@@ -71,11 +71,11 @@ end, {
   desc = "Pin current or given file with optional key",
 })
 
-vim.api.nvim_create_user_command("UnpinFile", function(opts)
+vim.api.nvim_create_user_command("Unpin", function(opts)
   local pins = load_pins()
   local key = opts.args
   if key == "" then
-    print("Usage: :UnpinFile <key>")
+    print("Usage: :Unpin <key>")
     return
   end
 
@@ -97,7 +97,7 @@ vim.api.nvim_create_user_command("UnpinFile", function(opts)
   end
 end, {
   nargs = 1,
-  desc = "Unpin a file by its key (e.g., :UnpinFile a)",
+  desc = "Unpin a file by its key (e.g., :Unpin a)",
 })
 
 function M.show_dashboard()

@@ -1,11 +1,10 @@
 -- /lua/..
 require('keybindings')
 require('netwr')
+require("pacman").setup()
 
 -- /pack/..
-require('telescope').setup{}
 require('neogit').setup{}
-require('buffer-manager').setup{}
 
 -- /csode/..
 require("csode.options")
