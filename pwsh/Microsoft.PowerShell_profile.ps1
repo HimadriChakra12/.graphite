@@ -79,6 +79,7 @@ Set-Alias -Name z -Value __zoxide_z -Option AllScope -Scope Global -Force
 Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 Set-Alias -Name gg -Value lazygit -Option AllScope -Scope Global -Force
 Set-Alias -Name ls -Value eza -Option AllScope -Scope Global -Force
+Set-Alias -Name sudo -Value gsudo -Option AllScope -Scope Global -Force
 function ..{
     cd ..
 }
@@ -127,7 +128,7 @@ Function yp{
 }
 function pin{
     "$pwd" | add-content ~/pindir.txt;
-    nvim ~/pindir.txt
+    nvim ~/pindir.txt -c "w"
 }
 function tui{taskkill /im explorer.exe /f}
 function kill ($taskname){taskkill /im $taskname /f}
@@ -268,4 +269,35 @@ function env {
                 [Environment]::SetEnvironmentVariable("Path", $newPathValue, "User")
                 Write-Host "Path added to user PATH variable. You may need to restart your session for changes to take effect."
         }
+}
+function gs {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$query
+    )
+
+    $json = gh search repos $query --json name,owner --limit 50
+    if (-not $json) {
+        Write-Warning "No results found."
+        return
+    }
+
+    $lines = ($json -split '},?{') | ForEach-Object {
+        $owner = ($_ -match '"login":\s*"([^"]+)"') ? $matches[1] : ''
+        $name = ($_ -match '"name":\s*"([^"]+)"') ? $matches[1] : ''
+        if ($owner -and $name) { "$owner/$name" }
+    }
+
+    if (-not $lines) {
+        Write-Warning "No repositories matched."
+        return
+    }
+
+    $selected = $lines | fzf --prompt="Select repo: "
+    $sel = "https://github.com/$($selected)"
+    if ($selected) {
+	    set-clipboard $seL
+    } else {
+        Write-Warning "No repository selected."
+    }
 }
