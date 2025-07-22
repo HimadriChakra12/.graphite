@@ -1,8 +1,4 @@
 [{
-		"name":	"Java8",
-		"id":	"java",
-		"version":	"8.0.4510.10"
-	}, {
 		"name":	"qBittorrent",
 		"id":	"qbittorrent",
 		"version":	"5.1.0"
@@ -34,10 +30,6 @@
 		"name":	"Python 3",
 		"id":	"python3",
 		"version":	"3.13.5"
-	}, {
-		"name":	"qimgv",
-		"id":	"qimgv",
-		"version":	"1.0.2"
 	}, {
 		"name":	"Teracopy",
 		"id":	"teracopy",
@@ -78,4 +70,12 @@
 		"name":	"Windows Powershell",
 		"id":	"powershell",
 		"version":	"7.5.2"
+	}, {
+		"name":	"qimgv",
+		"id":	"qimgv",
+		"version":	"1.0.2"
+	}, {
+		"name":	"Java8",
+		"id":	"java",
+		"version":	"8.0.4510.10"
 	}]
