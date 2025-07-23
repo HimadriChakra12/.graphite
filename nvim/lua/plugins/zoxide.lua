@@ -163,15 +163,59 @@ function M.zcd(query)
 end
 
 function M.zt(query)
-  local ok, telescope = pcall(require, "telescope"); if not ok then return end
+  local ok, telescope = pcall(require, "telescope")
+  if not ok then return end
   sort_history()
+
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
   local conf = require("telescope.config").values
+  local previewers = require("telescope.previewers")
+  local Job = require("plenary.job")
 
-  local picker = pickers.new({}, { -- Assign the result to 'picker'
+  local function dir_previewer(entry, bufnr)
+    local path = entry.value
+    if not path or path == "" then return end
+
+    -- Clear buffer first
+    vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "Loading..." })
+
+    local cmd, args
+    if vim.fn.has("win32") == 1 then
+      cmd = "cmd"
+      args = { "/c", 'dir "' .. path .. '"' } -- pass as ONE string
+    else
+      cmd = "ls"
+      args = { "-la", path }
+    end
+
+    Job:new({
+      command = cmd,
+      args = args,
+      on_stdout = function(_, line)
+        if line and line ~= "" then
+          vim.schedule(function()
+            if vim.api.nvim_buf_is_valid(bufnr) then
+              vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, { line })
+            end
+          end)
+        end
+      end,
+      on_stderr = function(_, line)
+        if line and line ~= "" then
+          vim.schedule(function()
+            if vim.api.nvim_buf_is_valid(bufnr) then
+              vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, { "Error: " .. line })
+            end
+          end)
+        end
+      end,
+    }):start()
+  end
+
+  local picker = pickers.new({}, {
     prompt_title = "  Zoxscope  ",
     finder = finders.new_table {
       results = fuzzy_filter(query),
@@ -183,10 +227,16 @@ function M.zt(query)
         }
       end,
     },
+    previewer = previewers.new_buffer_previewer({
+      title = "Directory Preview",
+      define_preview = function(self, entry, _)
+        dir_previewer(entry, self.state.bufnr)
+      end,
+    }),
     sorter = conf.generic_sorter({}),
-    attach_mappings = function(prompt_bufnr, map) -- 'prompt_bufnr' is the first argument
+    attach_mappings = function(prompt_bufnr, map)
       actions.select_default:replace(function()
-        actions.close(prompt_bufnr) -- Pass 'prompt_bufnr' to close
+        actions.close(prompt_bufnr)
         local entry = action_state.get_selected_entry()
         if entry then
           vim.cmd("cd " .. vim.fn.fnameescape(entry.value))
@@ -199,7 +249,7 @@ function M.zt(query)
     end,
   })
 
-  picker:find() -- Call :find() on the 'picker' instance
+  picker:find()
 end
 
 -- Setup and autocmds

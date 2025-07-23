@@ -54,7 +54,7 @@ local function ensure_plugin(plugin)
 end
 
 function M.setup()
-  local plugins = require("hvim.plugins")
+  local plugins = require("plugins")
   vim.defer_fn(function()
     for _, plugin in ipairs(plugins) do
       ensure_plugin(plugin)

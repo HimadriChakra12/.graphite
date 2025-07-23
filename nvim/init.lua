@@ -1,10 +1,11 @@
 -- vim.keymap.set("n", "<leader>cd", require("telescope").extensions.zoxide.list)
-require('plug')
+require('rho')
 
 -- Line Numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.fillchars = { eob = " " }
+vim.opt.guicursor = ""
 
 -- Better searching
 vim.opt.incsearch = true
@@ -49,3 +50,6 @@ vim.opt.background = "dark"   -- Set to dark mode
 vim.cmd("colorscheme gruvbox")  -- Load Gruvbox
 
 
+vim.keymap.set("n", "<leader>pm", function()
+    require("pacman.maze").open()
+end, { desc = "Plugin Manager GUI" })
