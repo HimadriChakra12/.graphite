@@ -138,21 +138,53 @@ function zp { cd $(cat ~/pindir.txt | fzf)}
 function gcl {
     param(
         [string]$name,
-        [string]$url
+        [string]$url,
+        [string]$s
     )
 
     $targetRoot = "D:/git"
 
-    if ($url) {
-        if (-not $name) {
-            # Try to infer repo name from URL
-            $name = ($url -split '/')[-1] -replace '\.git$', ''
+        if ($s){
+            $json = gh search repos $s --json name,owner --limit 50
+                if (-not $json) {
+                    Write-Warning "No results found."
+                        return
+                }
+
+            $lines = ($json -split '},?{') | ForEach-Object {
+                $owner = ($_ -match '"login":\s*"([^"]+)"') ? $matches[1] : ''
+                    $n = ($_ -match '"name":\s*"([^"]+)"') ? $matches[1] : ''
+                    if ($owner -and $n) { "$owner/$n" }
+            }
+
+        if (-not $lines) {
+            Write-Warning "No repositories matched."
+                return
         }
-        git clone "$url" "$targetRoot/$name"
-        Set-Location "$targetRoot/$name"
-        return
+
+        $selected = $lines | fzf --prompt="Select repo: "
+            $sel = "https://github.com/$($selected)"
+            if ($selected) {
+                if (-not $n) {
+                    $n = ($url -split '/')[-1] -replace '\.git$', ''
+                }
+                git clone "$sel" "$targetRoot/$n"
+            } else {
+                Write-Warning "No repository selected."
+            }
     }
 
+
+
+    if ($u) {
+        if (-not $n) {
+            $n = ($u -split '/')[-1] -replace '\.git$', ''
+        }
+        git clone "$u" "$targetRoot/$n"
+        Set-Location "$targetRoot/$n"
+        return
+    }
+    
     # Interactive mode using gh and fzf
     $repo = gh repo list HimadriChakra12 --limit 100 --json name --jq '.[].name' | fzf
 
@@ -285,7 +317,7 @@ function gs {
     $lines = ($json -split '},?{') | ForEach-Object {
         $owner = ($_ -match '"login":\s*"([^"]+)"') ? $matches[1] : ''
         $name = ($_ -match '"name":\s*"([^"]+)"') ? $matches[1] : ''
-        if ($owner -and $name) { "$owner/$name" }
+        if ($owner -and $name) { "$owner/$name.git" }
     }
 
     if (-not $lines) {

@@ -14,6 +14,7 @@ local function load_plugins()
 end
 
 -- Helper: Save plugins back to plugins.lua in a basic Lua table format
+-- Helper: Save plugins back to plugins.lua in a basic Lua table format
 local function save_plugins(plugins)
   local file = io.open(plugins_file, "w")
   if not file then
@@ -23,16 +24,24 @@ local function save_plugins(plugins)
 
   file:write("return {\n")
   for _, p in ipairs(plugins) do
-    file:write(string.format("  {\n    name = %q,\n    url = %q", p.name, p.url))
+    file:write(string.format("  {\n    name = %q,\n    url = %q,\n", p.name, p.url))
+    
+    -- config block
+    file:write(string.format([[    config = function()
+      require("%s")
+    end,
+]], p.name))
+
+    -- dependencies block if exists
     if p.dependencies and #p.dependencies > 0 then
-      file:write(",\n    dependencies = {\n")
+      file:write("    dependencies = {\n")
       for _, d in ipairs(p.dependencies) do
         file:write(string.format("      { name = %q, url = %q },\n", d.name, d.url))
       end
-      file:write("    }\n  },\n")
-    else
-      file:write("\n  },\n")
+      file:write("    }\n")
     end
+
+    file:write("  },\n")
   end
   file:write("}\n")
   file:close()

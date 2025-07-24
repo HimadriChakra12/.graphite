@@ -10,7 +10,9 @@ local function clone_plugin(url, path)
   vim.cmd("belowright split | resize 10")
   vim.cmd("enew")  -- new buffer
   vim.cmd("setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile")
-  vim.api.nvim_buf_set_lines(0, 0, -1, false, { "Cloning " .. url .. "..." })
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "Cloning " .. url .. "..." })
 
   -- Run the git command and capture output
   local handle = io.popen(string.format("git clone --depth 1 %s %s 2>&1", url, path))
@@ -21,8 +23,19 @@ local function clone_plugin(url, path)
   for line in result:gmatch("[^\r\n]+") do
     table.insert(lines, line)
   end
-  vim.api.nvim_buf_set_lines(0, -1, -1, false, lines)
-  vim.api.nvim_buf_set_lines(0, -1, -1, false, { "Clone complete." })
+
+  vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, lines)
+  vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, { "Clone complete." })
+
+  -- Auto-close the window after short delay
+  vim.defer_fn(function()
+    -- Double check the buffer is still valid and visible
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      if vim.api.nvim_win_get_buf(win) == bufnr then
+        vim.api.nvim_win_close(win, true)
+      end
+    end
+  end, 1000) -- 1 second delay
 end
 
 local function ensure_plugin(plugin)

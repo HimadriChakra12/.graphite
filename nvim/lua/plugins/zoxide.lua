@@ -175,23 +175,28 @@ function M.zt(query)
   local previewers = require("telescope.previewers")
   local Job = require("plenary.job")
 
-  local function dir_previewer(entry, bufnr)
-    local path = entry.value
-    if not path or path == "" then return end
+local function dir_previewer(entry, bufnr)
+  local path = entry.value
+  if not path or path == "" then return end
 
-    -- Clear buffer first
-    vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "Loading..." })
+  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "Loading..." })
 
-    local cmd, args
-    if vim.fn.has("win32") == 1 then
-      cmd = "cmd"
-      args = { "/c", 'dir "' .. path .. '"' } -- pass as ONE string
-    else
-      cmd = "ls"
-      args = { "-la", path }
-    end
+  local cmd, args
 
-    Job:new({
+  if vim.fn.has("win32") == 1 then
+    cmd = "powershell"
+    args = {
+      "-NoProfile",
+      "-Command",
+      string.format("Get-ChildItem -Force -LiteralPath '%s' | Format-Table -HideTableHeaders Name,Length,LastWriteTime", path)
+    }
+  else
+    cmd = "ls"
+    args = { "-la", path }
+  end
+
+  require("plenary.job")
+    :new({
       command = cmd,
       args = args,
       on_stdout = function(_, line)
@@ -212,8 +217,9 @@ function M.zt(query)
           end)
         end
       end,
-    }):start()
-  end
+    })
+    :start()
+end
 
   local picker = pickers.new({}, {
     prompt_title = "  Zoxscope  ",
