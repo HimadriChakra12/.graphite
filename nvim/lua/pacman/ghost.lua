@@ -1,3 +1,4 @@
+# Ghost.lua
 local uv = vim.loop
 local M = {}
 
@@ -67,7 +68,7 @@ local function ensure_plugin(plugin)
 end
 
 function M.setup()
-  local plugins = require("plugins")
+  local plugins = require("plugs")
   vim.defer_fn(function()
     for _, plugin in ipairs(plugins) do
       ensure_plugin(plugin)

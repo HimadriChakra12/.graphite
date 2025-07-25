@@ -1,7 +1,7 @@
 local M = {}
 
 local config_path = vim.fn.stdpath("config")
-local plugins_file = config_path .. "/lua/plugins.lua"
+local plugins_file = config_path .. "/lua/plugs.lua"
 
 -- Helper: Load plugins from hvim/plugins.lua
 local function load_plugins()

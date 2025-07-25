@@ -179,17 +179,18 @@ local function dir_previewer(entry, bufnr)
   local path = entry.value
   if not path or path == "" then return end
 
-  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "Loading..." })
-
   local cmd, args
 
-  if vim.fn.has("win32") == 1 then
-    cmd = "powershell"
-    args = {
-      "-NoProfile",
-      "-Command",
-      string.format("Get-ChildItem -Force -LiteralPath '%s' | Format-Table -HideTableHeaders Name,Length,LastWriteTime", path)
-    }
+if vim.fn.has("win32") == 1 then
+  cmd = "powershell"
+  args = {
+    "-NoProfile",
+    "-Command",
+    string.format(
+      "Get-ChildItem -Force -LiteralPath '%s' | Format-Table Mode,Name,Length,LastWriteTime | out-string | Select-String -NotMatch \"^Directory:\"",
+      path
+    )
+  }
   else
     cmd = "ls"
     args = { "-la", path }

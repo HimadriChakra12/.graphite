@@ -3,6 +3,7 @@ require('keybindings')
 -- require('netwr')
 require("pacman.ghost").setup()
 require("headlines")
+require("plugs")
 
 -- /csode/..
 require("csode.options")
