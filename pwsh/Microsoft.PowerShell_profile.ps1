@@ -119,6 +119,7 @@ function zo {
     }
   }
 }
+Set-Alias -Name f -Value zo -Option AllScope -Scope Global -Force
 function exp{
     $location= Get-location
     explorer $location
@@ -137,8 +138,8 @@ function cpy { Set-Clipboard $args[0] }
 function zp { cd $(cat ~/pindir.txt | fzf)}
 function gcl {
     param(
-        [string]$name,
-        [string]$url,
+        [string]$n,
+        [string]$u,
         [string]$s
     )
 
