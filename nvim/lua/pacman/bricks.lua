@@ -1,11 +1,10 @@
+# bricks.lua
 local M = {}
 
 local plugin_file = vim.fn.stdpath("config") .. "/lua/plugs.lua"
 local temp_dir = vim.fn.stdpath("cache") .. "/gh_plugin_preview"
 
--- Load plugin list
-
--- Save plugin list
+-- Save plugin list (only URL)
 local function save_plugins(plugins)
   local f = io.open(plugin_file, "w")
   if not f then
@@ -15,27 +14,32 @@ local function save_plugins(plugins)
 
   f:write("return {\n")
   for _, p in ipairs(plugins) do
-    f:write(string.format("  { name = %q, url = %q },\n", p.name, p.url))
+    f:write(string.format("  { url = %q },\n", p.url))
   end
   f:write("}\n")
   f:close()
 end
 
--- Add plugin
-local function add_plugin(name, url)
-  local plugins = require(ghost).load_plugins()
+-- Extract name from GitHub URL: "https://github.com/user/repo" → "repo"
+local function extract_plugin_name(url)
+  return url:match(".*/(.-)$"):gsub("%.git$", "")
+end
+
+-- Add plugin by URL
+local function add_plugin(url)
+  local plugins = require("pacman.ghost").load_plugins()
   for _, p in ipairs(plugins) do
-    if p.name == name then
-      vim.cmd("echo 'Plugin already exists: " .. name .. "'")
+    if p.url == url then
+      vim.cmd("echo 'Plugin already exists: " .. url .. "'")
       return
     end
   end
-  table.insert(plugins, { name = name, url = url })
+  table.insert(plugins, { url = url })
   save_plugins(plugins)
-  vim.cmd("echo 'Plugin added: " .. name .. "'")
+  vim.cmd("echo 'Plugin added: " .. url .. "'")
 end
 
--- Safe file read
+-- File reader
 local function read_file_lines(path)
   local lines = {}
   local f = io.open(path, "r")
@@ -50,7 +54,7 @@ local function read_file_lines(path)
   return lines
 end
 
--- Telescope Picker with README preview
+-- Telescope GitHub plugin search
 function M.find_plugin()
   vim.ui.input({ prompt = "🔍 Plugin search: " }, function(input)
     if not input or input == "" then return end
@@ -78,9 +82,7 @@ function M.find_plugin()
           for _, r in ipairs(results) do
             table.insert(entries, {
               display = r.owner.login .. "/" .. r.name,
-              name = r.owner.login .. "/" .. r.name,
-              repo = r.name,
-              url = r.url
+              url = r.url,
             })
           end
 
@@ -103,42 +105,27 @@ function M.find_plugin()
                 vim.fn.delete(temp_dir, "rf")
                 vim.fn.mkdir(temp_dir, "p")
 
-                local repo_name = entry.value.name
-                local path = temp_dir .. "/" .. repo_name
+                local plugin_name = extract_plugin_name(entry.value.url)
+                local path = temp_dir .. "/" .. plugin_name
 
                 Job:new({
                   command = "gh",
-                  args = { "repo", "clone", repo_name, path },
+                  args = { "repo", "clone", entry.value.url, path },
                   on_exit = function()
-                    local readme = path .. "/README.md"
-                    local alt_readme = path .. "/readme.md"
-                    local init = path .. "/lua/init.lua"
-
-                    local function read_file_lines(file)
-                      local lines = {}
-                      for line in io.lines(file) do
-                        table.insert(lines, line)
+                    local content = { "No preview available." }
+                    for _, file in ipairs({ "README.md", "readme.md", "lua/init.lua" }) do
+                      local fullpath = path .. "/" .. file
+                      if vim.fn.filereadable(fullpath) == 1 then
+                        content = read_file_lines(fullpath)
+                        break
                       end
-                      return lines
                     end
-
-                    local content = {}
-                    if vim.fn.filereadable(readme) == 1 then
-                      content = read_file_lines(readme)
-                    elseif vim.fn.filereadable(alt_readme) == 1 then
-                      content = read_file_lines(alt_readme)
-                    elseif vim.fn.filereadable(init) == 1 then
-                      content = read_file_lines(init)
-                    else
-                      content = { "No preview available." }
-                    end
-
                     vim.schedule(function()
                       if self.state and vim.api.nvim_buf_is_valid(self.state.bufnr) then
                         vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, content)
                       end
                     end)
-                  end
+                  end,
                 }):start()
               end,
             }),
@@ -146,8 +133,8 @@ function M.find_plugin()
             attach_mappings = function(prompt_bufnr, map)
               actions.select_default:replace(function()
                 local entry = action_state.get_selected_entry()
-                local plugin_name = entry.value.repo
                 local plugin_url = entry.value.url
+                local plugin_name = extract_plugin_name(plugin_url)
                 local install_path = vim.fn.stdpath("data") .. "/site/pack/manual/start/" .. plugin_name
 
                 actions._close(prompt_bufnr)
@@ -157,26 +144,18 @@ function M.find_plugin()
                   args = { "clone", plugin_url, install_path },
                   on_exit = function()
                     vim.schedule(function()
-                      -- Append plugin to plugs.lua
                       local ok, plugmod = pcall(require, "pacman.ghost")
                       if not ok then
-                        vim.notify("❌ plugin_manager.core not found", vim.log.levels.ERROR)
+                        vim.notify("❌ pacman.ghost not found", vim.log.levels.ERROR)
                         return
                       end
-
                       local plugins = plugmod.load_plugins()
-                      table.insert(plugins, {
-                        name = plugin_name,
-                        url = plugin_url,
-                      })
+                      table.insert(plugins, { url = plugin_url })
                       plugmod.save_plugins(plugins)
-
-                      -- Auto-load manually installed plugin
                       vim.cmd("packadd " .. plugin_name)
-
-                      vim.notify("✅ Installed & loaded: " .. plugin_name, vim.log.levels.INFO)
+                      vim.notify("✅ Installed: " .. plugin_name, vim.log.levels.INFO)
                     end)
-                  end
+                  end,
                 }):start()
               end)
               return true

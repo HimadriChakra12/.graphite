@@ -1,4 +1,4 @@
-# Ghost.lua
+-- ghost.lua (async version)
 local uv = vim.loop
 local M = {}
 
@@ -6,74 +6,154 @@ local data_path = vim.fn.stdpath("data")
 local plugin_path = data_path .. "/site/pack/manual/start"
 local installed = {}
 
-local function clone_plugin(url, path)
-  -- Open a split for showing output
-  vim.cmd("belowright split | resize 10")
-  vim.cmd("enew")  -- new buffer
+-- Extract plugin name from Git URL
+local function extract_name(url)
+  return url:match(".*/(.-)%.git$") or url:match(".*/(.-)$")
+end
+
+-- Output buffer utilities
+local function open_output_buffer()
+  vim.cmd("botright split | resize 10")
+  vim.cmd("enew")
   vim.cmd("setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile")
   local bufnr = vim.api.nvim_get_current_buf()
+  return bufnr
+end
 
-  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "Cloning " .. url .. "..." })
-
-  -- Run the git command and capture output
-  local handle = io.popen(string.format("git clone --depth 1 %s %s 2>&1", url, path))
-  local result = handle:read("*a")
-  handle:close()
-
-  local lines = {}
-  for line in result:gmatch("[^\r\n]+") do
-    table.insert(lines, line)
-  end
-
-  vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, lines)
-  vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, { "Clone complete." })
-
-  -- Auto-close the window after short delay
-  vim.defer_fn(function()
-    -- Double check the buffer is still valid and visible
-    for _, win in ipairs(vim.api.nvim_list_wins()) do
-      if vim.api.nvim_win_get_buf(win) == bufnr then
-        vim.api.nvim_win_close(win, true)
+local function append_lines(bufnr, lines)
+  vim.schedule(function()
+    local all = {}
+    if type(lines) == "string" then
+      vim.list_extend(all, vim.split(lines, "\n"))
+    elseif type(lines) == "table" then
+      for _, l in ipairs(lines) do
+        if type(l) == "string" then
+          vim.list_extend(all, vim.split(l, "\n"))
+        end
       end
     end
-  end, 1000) -- 1 second delay
+    vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, all)
+  end)
 end
 
-local function ensure_plugin(plugin)
-  if installed[plugin.name] then return end
-  installed[plugin.name] = true
+-- Clone a plugin asynchronously
+local function clone_plugin_async(url, path, bufnr, on_done)
+  append_lines(bufnr, { "🔁 Cloning: " .. url })
 
-  -- Recursively install dependencies first
-  if plugin.dependencies then
-    for _, dep in ipairs(plugin.dependencies) do
-      ensure_plugin(dep)
+  local stdout = uv.new_pipe(false)
+  local stderr = uv.new_pipe(false)
+
+  local handle
+  handle = uv.spawn("git", {
+    args = { "clone", "--depth", "1", url, path },
+    stdio = { nil, stdout, stderr },
+  }, function(code, signal)
+    stdout:close()
+    stderr:close()
+    handle:close()
+
+    if code == 0 then
+      append_lines(bufnr, { "✅ Clone complete.\n" })
+      vim.schedule(function()
+        vim.notify("✅ Installed: " .. extract_name(url), vim.log.levels.INFO)
+      end)
+      on_done(true)
+    else
+      append_lines(bufnr, { "❌ Clone failed with code: " .. tostring(code) })
+      vim.schedule(function()
+        vim.notify("❌ Failed: " .. extract_name(url), vim.log.levels.ERROR)
+      end)
+      on_done(false)
+    end
+  end)
+
+  local function read_pipe(pipe)
+    return function(err, data)
+      if err then return end
+      if data then append_lines(bufnr, vim.split(data, "\n")) end
     end
   end
 
-  local path = plugin_path .. "/" .. plugin.name
-  if not uv.fs_stat(path) then
-    vim.schedule(function()
-      vim.cmd(string.format("echom 'Installing %s...'", plugin.name))
-    end)
-    clone_plugin(plugin.url, path)
+  uv.read_start(stdout, read_pipe(stdout))
+  uv.read_start(stderr, read_pipe(stderr))
+end
+
+-- Ensure a single plugin and its dependencies
+local function ensure_plugin(plugin, bufnr, done_cb)
+  if not plugin.url then done_cb(); return end
+
+  local name = extract_name(plugin.url)
+  if installed[name] then done_cb(); return end
+  installed[name] = true
+
+  local function proceed()
+    local path = plugin_path .. "/" .. name
+    if not uv.fs_stat(path) then
+      append_lines(bufnr, { "⬇️  Installing " .. name .. "..." })
+      clone_plugin_async(plugin.url, path, bufnr, function(success)
+        vim.schedule(function()
+          vim.opt.runtimepath:append(path)
+          if success and type(plugin.config) == "function" then
+            pcall(plugin.config)
+          end
+          done_cb()
+        end)
+      end)
+    else
+      append_lines(bufnr, { "⚠️  Already installed: " .. name })
+      vim.schedule(function()
+        vim.opt.runtimepath:append(path)
+        if type(plugin.config) == "function" then
+          pcall(plugin.config)
+        end
+        done_cb()
+      end)
+    end
   end
 
-  -- Add plugin to runtimepath
-  vim.opt.runtimepath:append(path)
-
-  -- Run plugin config
-  if type(plugin.config) == "function" then
-    pcall(plugin.config)
+  if plugin.dependencies and #plugin.dependencies > 0 then
+    local i = 1
+    local function install_next_dep()
+      local dep = plugin.dependencies[i]
+      if not dep then return proceed() end
+      ensure_plugin(dep, bufnr, function()
+        i = i + 1
+        install_next_dep()
+      end)
+    end
+    install_next_dep()
+  else
+    proceed()
   end
 end
 
+-- Entry point: async setup
 function M.setup()
   local plugins = require("plugs")
-  vim.defer_fn(function()
-    for _, plugin in ipairs(plugins) do
-      ensure_plugin(plugin)
+  local bufnr = open_output_buffer()
+  append_lines(bufnr, { "🚀 Starting async installation...\n" })
+
+  local i = 1
+  local function install_next()
+    local plugin = plugins[i]
+    if not plugin then
+      append_lines(bufnr, { "\n🎉 All plugins installed." })
+      vim.defer_fn(function()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          if vim.api.nvim_win_get_buf(win) == bufnr then
+            vim.api.nvim_win_close(win, true)
+          end
+        end
+      end, 2000)
+      return
     end
-  end, 100) -- delay a bit to let startup finish
+    ensure_plugin(plugin, bufnr, function()
+      i = i + 1
+      install_next()
+    end)
+  end
+
+  install_next()
 end
 
 return M

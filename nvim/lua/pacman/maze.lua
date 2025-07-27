@@ -3,7 +3,12 @@ local M = {}
 local config_path = vim.fn.stdpath("config")
 local plugins_file = config_path .. "/lua/plugs.lua"
 
--- Helper: Load plugins from hvim/plugins.lua
+-- Extract name from URL
+local function extract_name(url)
+  return url:match(".*/(.-)%.git$") or url:match(".*/(.-)$")
+end
+
+-- Load plugins from plugs.lua
 local function load_plugins()
   local status, plugins = pcall(dofile, plugins_file)
   if not status or type(plugins) ~= "table" then
@@ -13,8 +18,7 @@ local function load_plugins()
   return plugins
 end
 
--- Helper: Save plugins back to plugins.lua in a basic Lua table format
--- Helper: Save plugins back to plugins.lua in a basic Lua table format
+-- Save plugins back to plugs.lua
 local function save_plugins(plugins)
   local file = io.open(plugins_file, "w")
   if not file then
@@ -25,20 +29,20 @@ local function save_plugins(plugins)
   file:write("return {\n")
   for _, p in ipairs(plugins) do
     file:write(string.format("  {\n    name = %q,\n    url = %q,\n", p.name, p.url))
-    
-    -- config block
-    file:write(string.format([[    config = function()
+
+    if p.config then
+      file:write(string.format([[    config = function()
       require("%s")
     end,
 ]], p.name))
+    end
 
-    -- dependencies block if exists
     if p.dependencies and #p.dependencies > 0 then
       file:write("    dependencies = {\n")
       for _, d in ipairs(p.dependencies) do
-        file:write(string.format("      { name = %q, url = %q },\n", d.name, d.url))
+        file:write(string.format("      { url = %q },\n", d.url))
       end
-      file:write("    }\n")
+      file:write("    },\n")
     end
 
     file:write("  },\n")
@@ -48,36 +52,37 @@ local function save_plugins(plugins)
   return true
 end
 
--- Format plugin list into lines for display
+-- Format plugins for display
 local function format_plugins(plugins)
   local lines = {}
   for _, plugin in ipairs(plugins) do
-    table.insert(lines, "" .. plugin.name .. " (" .. plugin.url .. ")")
+    table.insert(lines, plugin.name .. " (" .. plugin.url .. ")")
     if plugin.dependencies then
       for _, dep in ipairs(plugin.dependencies) do
-        table.insert(lines, "  [>] " .. dep.name .. " (" .. dep.url .. ")")
+        local dep_name = extract_name(dep.url)
+        table.insert(lines, "  [>] " .. dep_name .. " (" .. dep.url .. ")")
       end
     end
-    table.insert(lines, "") -- spacing
+    table.insert(lines, "")
   end
   return lines
 end
 
--- Parse dependencies input string like "<name> <url> ; <name> <url>"
+-- Parse dependencies input like "<url> ; <url>"
 local function parse_dependencies(dep_input)
   if not dep_input or dep_input == "" then return nil end
   local deps = {}
   for dep_str in dep_input:gmatch("[^;]+") do
-    local name, url = dep_str:match("^%s*(%S+)%s+(%S+)%s*$")
-    if name and url then
-      table.insert(deps, { name = name, url = url })
+    local url = dep_str:match("^%s*(%S+)%s*$")
+    if url then
+      table.insert(deps, { url = url })
     end
   end
   if #deps == 0 then return nil end
   return deps
 end
 
--- Reload buffer lines with plugin list
+-- Refresh the buffer view
 local function refresh_buffer(bufnr, plugins)
   local lines = format_plugins(plugins)
   vim.api.nvim_buf_set_option(bufnr, "modifiable", true)
@@ -85,13 +90,13 @@ local function refresh_buffer(bufnr, plugins)
   vim.api.nvim_buf_set_option(bufnr, "modifiable", false)
 end
 
--- Add plugin handler
+-- Add plugin
 local function add_plugin(bufnr, plugins)
-  vim.ui.input({ prompt = "Enter plugin name (e.g. foo/bar): " }, function(name)
+  vim.ui.input({ prompt = "Enter plugin name (e.g. lualine.nvim): " }, function(name)
     if not name or name == "" then return end
     vim.ui.input({ prompt = "Enter plugin URL: " }, function(url)
       if not url or url == "" then return end
-      vim.ui.input({ prompt = "Enter dependencies (<name> <url> ; ...), or leave empty: " }, function(dep_input)
+      vim.ui.input({ prompt = "Enter dependencies (URLs separated by `;`), or leave empty: " }, function(dep_input)
         local deps = parse_dependencies(dep_input)
         table.insert(plugins, { name = name, url = url, dependencies = deps })
         if save_plugins(plugins) then
@@ -103,15 +108,12 @@ local function add_plugin(bufnr, plugins)
   end)
 end
 
--- Delete plugin or dependency handler
+-- Delete plugin or dependency
 local function delete_at_cursor(bufnr, plugins)
   local cursor = vim.api.nvim_win_get_cursor(0)
   local line = cursor[1]
-
-  -- We skip first line (title)
   if line == 1 then return end
 
-  -- Flatten plugins to line indices for mapping
   local idx = 2
   for i, p in ipairs(plugins) do
     local plugin_line = idx
@@ -122,7 +124,6 @@ local function delete_at_cursor(bufnr, plugins)
     end
 
     if line == plugin_line then
-      -- Delete whole plugin
       table.remove(plugins, i)
       if save_plugins(plugins) then
         vim.notify("Plugin deleted")
@@ -133,7 +134,6 @@ local function delete_at_cursor(bufnr, plugins)
 
     for di, dline in ipairs(dep_lines) do
       if line == dline then
-        -- Delete dependency at di
         table.remove(p.dependencies, di)
         if #p.dependencies == 0 then
           p.dependencies = nil
@@ -146,13 +146,13 @@ local function delete_at_cursor(bufnr, plugins)
       end
     end
 
-    idx = idx + dep_count + 2 -- plugin line + deps + blank line
+    idx = idx + dep_count + 2
   end
 
   vim.notify("No plugin or dependency found on this line", vim.log.levels.WARN)
 end
 
--- Update plugins handler
+-- Git pull update
 local function update_plugins()
   local plugins = load_plugins()
   for _, plugin in ipairs(plugins) do
@@ -162,7 +162,8 @@ local function update_plugins()
     end
     if plugin.dependencies then
       for _, dep in ipairs(plugin.dependencies) do
-        local dep_dir = vim.fn.stdpath("data") .. "/site/pack/manual/start/" .. dep.name
+        local dep_name = extract_name(dep.url)
+        local dep_dir = vim.fn.stdpath("data") .. "/site/pack/manual/start/" .. dep_name
         if vim.fn.isdirectory(dep_dir) == 1 then
           vim.fn.system({ "git", "-C", dep_dir, "pull" })
         end
@@ -171,7 +172,8 @@ local function update_plugins()
   end
   vim.notify("Plugins updated via Git pull.")
 end
--- Render in a horizontal terminal split and setup keymaps
+
+-- Open plugin manager UI
 function M.open()
   local plugins = load_plugins()
   local lines = format_plugins(plugins)
@@ -194,7 +196,7 @@ function M.open()
   vim.keymap.set("n", "a", function() add_plugin(bufnr, plugins) end, opts)
   vim.keymap.set("n", "d", function() delete_at_cursor(bufnr, plugins) end, opts)
   vim.keymap.set("n", "s", function() update_plugins() end, opts)
-  vim.keymap.set("n", "u", "u", opts)  -- 'u' mapped to undo command
+  vim.keymap.set("n", "u", "u", opts)
 end
 
 return M
