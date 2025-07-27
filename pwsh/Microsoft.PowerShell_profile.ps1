@@ -28,6 +28,9 @@ function admin {
     sudo pwsh
 }
 
+function cmd{
+    get-command | format-table -HideTableHeaders Commandtype, name| fzf
+}
 # Set UNIX-like aliases for the admin command, so sudo <command> will run the command with elevated rights.
 Set-Alias -Name su -Value admin
 function reload-profile {
@@ -80,6 +83,7 @@ Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 Set-Alias -Name gg -Value lazygit -Option AllScope -Scope Global -Force
 Set-Alias -Name ls -Value eza -Option AllScope -Scope Global -Force
 Set-Alias -Name sudo -Value gsudo -Option AllScope -Scope Global -Force
+Set-Alias -Name ll -Value Get-childitem -Option AllScope -Scope Global -Force
 function ..{
     cd ..
 }
