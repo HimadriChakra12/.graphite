@@ -20,7 +20,11 @@ end
 
 -- Save plugins back to plugs.lua
 local function save_plugins(plugins)
-  local file = io.open(plugins_file, "w")
+  local plugs_path = plugins_file
+  local rho_path = config_path .. "/lua/rho.lua"
+
+  -- Save to plugs.lua (same as before, minus config block)
+  local file = io.open(plugs_path, "w")
   if not file then
     vim.notify("Failed to save plugins file", vim.log.levels.ERROR)
     return false
@@ -29,13 +33,6 @@ local function save_plugins(plugins)
   file:write("return {\n")
   for _, p in ipairs(plugins) do
     file:write(string.format("  {\n    name = %q,\n    url = %q,\n", p.name, p.url))
-
-    if p.config then
-      file:write(string.format([[    config = function()
-      require("%s")
-    end,
-]], p.name))
-    end
 
     if p.dependencies and #p.dependencies > 0 then
       file:write("    dependencies = {\n")
@@ -49,6 +46,26 @@ local function save_plugins(plugins)
   end
   file:write("}\n")
   file:close()
+
+  -- Append require() to lua/rho.lua if not already present
+  local f = io.open(rho_path, "r")
+  local content = f and f:read("*a") or ""
+  if f then f:close() end
+
+  local out = io.open(rho_path, "a")
+  if not out then
+    vim.notify("Failed to update rho.lua", vim.log.levels.ERROR)
+    return true -- plugins file saved, so we return true
+  end
+
+  for _, p in ipairs(plugins) do
+    local line = string.format([[require("%s")]], p.name)
+    if not content:find(line, 1, true) then
+      out:write("\n" .. line)
+    end
+  end
+
+  out:close()
   return true
 end
 
@@ -98,7 +115,8 @@ local function add_plugin(bufnr, plugins)
       if not url or url == "" then return end
       vim.ui.input({ prompt = "Enter dependencies (URLs separated by `;`), or leave empty: " }, function(dep_input)
         local deps = parse_dependencies(dep_input)
-        table.insert(plugins, { name = name, url = url, dependencies = deps })
+        local clean_name = name:gsub("%.nvim$", "")
+        table.insert(plugins, { name = clean_name, url = url, dependencies = deps })
         if save_plugins(plugins) then
           vim.notify("Plugin added, reloading...")
           refresh_buffer(bufnr, plugins)

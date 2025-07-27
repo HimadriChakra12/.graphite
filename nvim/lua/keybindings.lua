@@ -34,7 +34,7 @@ vim.keymap.set('n', '<leader>gc', ':NeoGitCommit<CR>', { noremap = true, silent 
 vim.keymap.set('n', '<leader>gP', ':NeoGitPull<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>gp', ':NeoGitPush<CR>', { noremap = true, silent = true })
 
-vim.keymap.set("n", "zo", ":Zcd ", { noremap = true})
+vim.keymap.set("n", "z", ":Zcd ", { noremap = true})
 vim.keymap.set("n", "<leader>.", ":Zt<CR>", { noremap = true, silent = true })
 -- Option 1: Mapping to Clear Highlighting (e.g., <CR> after search)
 vim.api.nvim_set_keymap('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })
@@ -55,9 +55,6 @@ vim.api.nvim_set_keymap('n', '<Leader>gfo', ':noh<CR>', { noremap = true, silent
 vim.keymap.set('n', '<leader><CR>', ':TerminalPopup<CR>', {silent = true, desc = 'Toggle Terminal Popup' })
 vim.keymap.set('n', '<leader><leader>', ':BufferManager<CR>', {silent = true, desc = 'Toggle Buffer Manager Popup' })
 
-vim.keymap.set("n", "<leader>pa", function()
-	require("autoload").reload_runtime()
-end, { desc = "Autoload Plugin" })
 vim.keymap.set("n", "<leader>fp", function()
   require("pacman.bricks").find_plugin()
 end, { desc = "Find and Add Plugin" })

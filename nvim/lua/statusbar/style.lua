@@ -4,15 +4,29 @@ local function is_git_repo()
 end
 
 local function get_git_branch()
-  if is_git_repo() then
-      local branch = vim.fn.systemlist("git branch --show-current")[1]
-      if branch and branch ~= "" then
-        return " " .. branch
-      else
-        return ""
-      end
+  if not is_git_repo() then return "" end
+
+  -- get current branch
+  local branch = vim.fn.systemlist("git branch --show-current")[1]
+  if not branch or branch == "" then return "" end
+
+  -- trim line endings (Windows safe)
+  branch = branch:gsub("%s+", "")
+
+  -- get list of branches
+  local branches = vim.fn.systemlist("git branch --format='%(refname:short)'")
+  local count = 0
+  for _, b in ipairs(branches) do
+    if b and b:gsub("%s+", "") ~= "" then
+      count = count + 1
+    end
+  end
+
+  -- show [M] if main/master or only one branch
+  if branch == "main" or branch == "master" or count == 1 then
+    return "M"
   else
-    return ""
+    return "b"
   end
 end
 local function get_git_status()

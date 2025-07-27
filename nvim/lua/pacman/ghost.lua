@@ -144,7 +144,7 @@ function M.setup()
             vim.api.nvim_win_close(win, true)
           end
         end
-      end, 2000)
+      end, 500)
       return
     end
     ensure_plugin(plugin, bufnr, function()
