@@ -140,23 +140,43 @@ function gcl {
     param(
         [string]$n,
         [string]$u,
-        [string]$s
+        [string]$s,
+        [switch]$stars
     )
 
     $targetRoot = "D:/git"
 
-        if ($s){
-            $json = gh search repos $s --json name,owner --limit 50
-                if (-not $json) {
-                    Write-Warning "No results found."
-                        return
-                }
-
-            $lines = ($json -split '},?{') | ForEach-Object {
-                $owner = ($_ -match '"login":\s*"([^"]+)"') ? $matches[1] : ''
-                    $n = ($_ -match '"name":\s*"([^"]+)"') ? $matches[1] : ''
-                    if ($owner -and $n) { "$owner/$n" }
+    if ($stars) {
+        $lines = gh api user/starred --paginate --jq '.[].full_name'
+            if (-not $lines) {
+                Write-Warning "You have no starred repositories."
+                    return
             }
+
+        $selected = $lines | fzf --prompt="⭐ Select a starred repo: "
+            if (-not $selected) {
+                Write-Warning "No repository selected."
+                    return
+            }
+
+        $url = "https://github.com/$selected"
+            Write-Host "Opening: $url"
+            Start-Process $url
+            return
+    }
+
+    if ($s){
+        $json = gh search repos $s --json name,owner --limit 50
+            if (-not $json) {
+                Write-Warning "No results found."
+                    return
+            }
+
+        $lines = ($json -split '},?{') | ForEach-Object {
+            $owner = ($_ -match '"login":\s*"([^"]+)"') ? $matches[1] : ''
+                $n = ($_ -match '"name":\s*"([^"]+)"') ? $matches[1] : ''
+                if ($owner -and $n) { "$owner/$n" }
+        }
 
         if (-not $lines) {
             Write-Warning "No repositories matched."
@@ -174,8 +194,6 @@ function gcl {
                 Write-Warning "No repository selected."
             }
     }
-
-
 
     if ($u) {
         if (-not $n) {
