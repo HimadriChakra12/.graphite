@@ -38,7 +38,7 @@ end
 
 -- Clone a plugin asynchronously
 local function clone_plugin_async(url, path, bufnr, on_done)
-  append_lines(bufnr, { "🔁 Cloning: " .. url })
+  append_lines(bufnr, { "o Cloning: " .. url })
 
   local stdout = uv.new_pipe(false)
   local stderr = uv.new_pipe(false)
@@ -53,15 +53,15 @@ local function clone_plugin_async(url, path, bufnr, on_done)
     handle:close()
 
     if code == 0 then
-      append_lines(bufnr, { "✅ Clone complete.\n" })
+      append_lines(bufnr, { "# Clone complete.\n" })
       vim.schedule(function()
-        vim.notify("✅ Installed: " .. extract_name(url), vim.log.levels.INFO)
+        vim.notify("- Installed: " .. extract_name(url), vim.log.levels.INFO)
       end)
       on_done(true)
     else
       append_lines(bufnr, { "❌ Clone failed with code: " .. tostring(code) })
       vim.schedule(function()
-        vim.notify("❌ Failed: " .. extract_name(url), vim.log.levels.ERROR)
+        vim.notify("x Failed: " .. extract_name(url), vim.log.levels.ERROR)
       end)
       on_done(false)
     end
@@ -89,7 +89,7 @@ local function ensure_plugin(plugin, bufnr, done_cb)
   local function proceed()
     local path = plugin_path .. "/" .. name
     if not uv.fs_stat(path) then
-      append_lines(bufnr, { "⬇️  Installing " .. name .. "..." })
+      append_lines(bufnr, { "|  Installing " .. name .. "..." })
       clone_plugin_async(plugin.url, path, bufnr, function(success)
         vim.schedule(function()
           vim.opt.runtimepath:append(path)
@@ -100,7 +100,7 @@ local function ensure_plugin(plugin, bufnr, done_cb)
         end)
       end)
     else
-      append_lines(bufnr, { "⚠️  Already installed: " .. name })
+      append_lines(bufnr, { "=  Already installed: " .. name })
       vim.schedule(function()
         vim.opt.runtimepath:append(path)
         if type(plugin.config) == "function" then
@@ -131,13 +131,13 @@ end
 function M.setup()
   local plugins = require("plugs")
   local bufnr = open_output_buffer()
-  append_lines(bufnr, { "🚀 Starting async installation...\n" })
+  append_lines(bufnr, { "/ Starting async installation...\n" })
 
   local i = 1
   local function install_next()
     local plugin = plugins[i]
     if not plugin then
-      append_lines(bufnr, { "\n🎉 All plugins installed." })
+      append_lines(bufnr, { "\n All plugins installed." })
       vim.defer_fn(function()
         for _, win in ipairs(vim.api.nvim_list_wins()) do
           if vim.api.nvim_win_get_buf(win) == bufnr then
