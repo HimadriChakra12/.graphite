@@ -15,10 +15,6 @@
 		"id":	"litexl",
 		"version":	""
 	}, {
-		"name":	"Neovim",
-		"id":	"nvim",
-		"version":	"0.11.2"
-	}, {
 		"name":	"Localsend",
 		"id":	"localsend",
 		"version":	"1.17.0"
@@ -78,4 +74,8 @@
 		"name":	"Java8",
 		"id":	"java",
 		"version":	"8.0.4510.10"
+	}, {
+		"name":	"Neovim",
+		"id":	"nvim",
+		"version":	"0.11.3"
 	}]
