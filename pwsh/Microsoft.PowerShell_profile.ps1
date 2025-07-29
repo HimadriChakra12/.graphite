@@ -28,6 +28,10 @@ function admin {
     sudo pwsh
 }
 
+function br($url){
+	start-process $url
+}
+
 function cmd{
     get-command | format-table -HideTableHeaders Commandtype, name| fzf
 }
@@ -36,6 +40,11 @@ Set-Alias -Name su -Value admin
 function reload-profile {
     & $profile
 }
+function refresh-profile {
+    . $profile
+}
+set-alias -name r -value refresh-Profile -Option AllScope -Scope Global -Force 
+set-alias -name rr -value reload-profile -Option AllScope -Scope Global -Force 
 function pkill($name) {
     Get-Process $name -ErrorAction SilentlyContinue | Stop-Process
 }
@@ -108,6 +117,8 @@ function dirr {
  }}}
 set-alias -name dir -value dirr -Option AllScope -Scope Global -Force 
 set-alias -name c -value clear -Option AllScope -Scope Global -Force 
+set-alias -name cklear -value clear -Option AllScope -Scope Global -Force 
+set-alias -name ckear -value clear -Option AllScope -Scope Global -Force 
 #function lsd{$Directory = Get-ChildItem -Directory | Select-Object -expandproperty name  | fzf --height 30% --layout reverse --border && cd $Directory}
 function zo {
   $items = @("..") + (Get-ChildItem | Select-Object -ExpandProperty Name)
@@ -337,21 +348,21 @@ function gs {
         return
     }
 
-    $lines = ($json -split '},?{') | ForEach-Object {
-        $owner = ($_ -match '"login":\s*"([^"]+)"') ? $matches[1] : ''
-        $name = ($_ -match '"name":\s*"([^"]+)"') ? $matches[1] : ''
-        if ($owner -and $name) { "$owner/$name.git" }
+    $repos = ($json | ConvertFrom-Json) | ForEach-Object {
+        "$($_.owner.login)/$($_.name)"
     }
 
-    if (-not $lines) {
+    if (-not $repos) {
         Write-Warning "No repositories matched."
         return
     }
 
-    $selected = $lines | fzf --prompt="Select repo: "
-    $sel = "https://github.com/$($selected)"
+    $selected = $repos | fzf --prompt="Select repo: " --preview='gh repo view {} ' --preview-window=right:70%
+
     if ($selected) {
-	    set-clipboard $seL
+        $url = "https://github.com/$selected"
+        $url | Set-Clipboard
+        Write-Host "Copied: $url"
     } else {
         Write-Warning "No repository selected."
     }
