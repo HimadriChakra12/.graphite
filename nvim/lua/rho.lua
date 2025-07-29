@@ -6,7 +6,6 @@ require("headlines")
 require("plugs")
 require("dashboard")
 -- require("buffer-manager").setup()
-require("autoload").ld()
 
 -- /csode/..
 -- require("csode.options")

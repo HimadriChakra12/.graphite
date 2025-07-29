@@ -55,6 +55,8 @@ vim.api.nvim_set_keymap('n', '<Leader>gfo', ':noh<CR>', { noremap = true, silent
 vim.keymap.set('n', '<leader><CR>', ':TerminalPopup<CR>', {silent = true, desc = 'Toggle Terminal Popup' })
 vim.keymap.set('n', '<leader><leader>', ':BufferManager<CR>', {silent = true, desc = 'Toggle Buffer Manager Popup' })
 
+vim.keymap.set('n', '<leader>Y', '"+y', {silent = true, desc = 'Toggle Terminal Popup' })
+
 vim.keymap.set("n", "<leader>fp", function()
   require("pacman.bricks").find_plugin()
 end, { desc = "Find and Add Plugin" })
