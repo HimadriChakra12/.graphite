@@ -53,5 +53,7 @@
 	"choco":	["yt-dlp", "msys2", "wincdemu"],
 	"scoop":	["libresprite", "caret"],
 	"winget":	[],
-	"wallpaper":	"C:\\Users\\himadri\\.graphite\\Wallpaper\\Gruvbox\\typewriter.jpg"
+	"wallpaper":	"C:\\Users\\himadri\\.wallpaper\\a_man_sitting_in_a_chair.png",
+	"lockscreen_wallpaper":	"C:\\Users\\himadri\\.graphite\\Wallpaper\\pawel-czerwinski-pC8e7FFONcI-unsplash.jpg",
+	"wallpaper_interval":	5
 }
