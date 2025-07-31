@@ -367,3 +367,15 @@ function gs {
         Write-Warning "No repository selected."
     }
 }
+
+
+function walls{
+$wall = Get-ChildItem -Path "$HOME\.graphite\wallpaper" -Recurse |
+    Select-Object -ExpandProperty FullName |
+fzf 
+#--preview='pwsh -NoProfile -ExecutionPolicy Bypass -Command "& {
+#    . \"$HOME/.graphite/scripts/show-ascii.ps1\"
+#    Show-SexelImage \"{}`"
+#}"'
+    $wall | set-clipboard
+}
