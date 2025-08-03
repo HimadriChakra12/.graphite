@@ -20,6 +20,11 @@ local config = {
   show_hidden = false,          -- Show hidden files by default
 }
 
+-- State for cut/yank/paste
+local clipboard = {}
+local clipboard_mode = nil -- "cut" or "copy"
+local selected_indices = {}
+
 -- Set up configuration
 function M.setup(user_config)
   config = vim.tbl_deep_extend("force", config, user_config or {})
@@ -144,6 +149,7 @@ function M.open()
   vim.api.nvim_set_hl(0, 'PopupExplorerCursorLine', { bg = "#2a2d2e" }) -- VSCode-like selection color
   vim.api.nvim_set_hl(0, 'PopupExplorerSymlink', { fg = "#569CD6", italic = true })
   vim.api.nvim_set_hl(0, 'PopupExplorerHidden', { fg = "#6A9955", italic = true })
+  vim.api.nvim_set_hl(0, 'Visual', { bg = "#264F78" })  -- Same as VSCode's selection
 
   vim.api.nvim_win_set_option(win, 'winhl', 
     'Normal:PopupExplorerNormal,' ..
@@ -256,6 +262,18 @@ function M.open()
         hl_group = hl_group
       })
     end
+    -- Highlight selected lines
+    for i = 1, #lines do
+        if selected_indices[i] then
+            table.insert(highlights, {
+                line = i - 1,
+                col = 0,
+                end_col = #lines[i],
+                hl_group = 'Visual',
+            })
+        end
+    end
+
 
     -- Set lines and apply highlights
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
@@ -510,37 +528,92 @@ function M.open()
   -- Refresh
   set_keymap('n', '<C-r>', refresh_contents, { desc = "Refresh explorer" })
 
+  -- Toggle selection with 'v'
+  set_keymap('n', 'v', function()
+      local line_num = vim.api.nvim_win_get_cursor(win)[1]
+      if selected_indices[line_num] then
+          selected_indices[line_num] = nil
+      else
+          selected_indices[line_num] = true
+      end
+      refresh_contents()
+  end, { desc = "Toggle multi-select" })
+
+  -- Yank selected or single with 'y'
+  set_keymap('n', 'y', function()
+      clipboard = {}
+      clipboard_mode = "copy"
+      local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+      for i = 1, #lines do
+          if selected_indices[i] or i == vim.api.nvim_win_get_cursor(win)[1] then
+              local name = lines[i]:match("[^%s]+$") or ""
+              table.insert(clipboard, current_path .. "/" .. name)
+          end
+      end
+      vim.notify("Yanked " .. #clipboard .. " item(s)")
+  end)
+
+  -- Cut selected or single with 'x'
+  set_keymap('n', 'x', function()
+      clipboard = {}
+      clipboard_mode = "cut"
+      local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+      for i = 1, #lines do
+          if selected_indices[i] or i == vim.api.nvim_win_get_cursor(win)[1] then
+              local name = lines[i]:match("[^%s]+$") or ""
+              table.insert(clipboard, current_path .. "/" .. name)
+          end
+      end
+      vim.notify("Cut " .. #clipboard .. " item(s)")
+  end)
+
+  -- Paste with 'p'
+  set_keymap('n', 'p', function()
+      for _, src in ipairs(clipboard) do
+          local name = src:match("[^/\\]+$") -- get basename
+          local dest = current_path .. "/" .. name
+          if clipboard_mode == "copy" then
+              vim.fn.jobstart({ "cmd", "/c", "xcopy", src, dest, "/E", "/I", "/Y" }, { detach = true })
+          elseif clipboard_mode == "cut" then
+              vim.fn.jobstart({ "cmd", "/c", "move", src, dest }, { detach = true })
+          end
+      end
+      selected_indices = {}
+      vim.defer_fn(refresh_contents, 300)
+  end)
+
+
   -- Set up autocommands
   vim.api.nvim_create_autocmd('BufLeave', {
-    buffer = buf,
-    callback = close_window,
-    once = true,
+      buffer = buf,
+      callback = close_window,
+      once = true,
   })
 
   vim.api.nvim_create_autocmd('DirChanged', {
-    callback = function()
-      if vim.api.nvim_win_is_valid(win) then
-        change_directory(vim.fn.getcwd())
-      end
-    end,
+      callback = function()
+          if vim.api.nvim_win_is_valid(win) then
+              change_directory(vim.fn.getcwd())
+          end
+      end,
   })
 end
 
 -- Toggle function
 function M.toggle()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    if vim.api.nvim_buf_get_name(buf) == "popup-explorer" then
-      vim.api.nvim_win_close(win, true)
-      return
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        if vim.api.nvim_buf_get_name(buf) == "popup-explorer" then
+            vim.api.nvim_win_close(win, true)
+            return
+        end
     end
-  end
-  M.open()
+    M.open()
 end
 
 -- Command to open the popup
 vim.api.nvim_create_user_command('Exp', M.toggle, {
-  desc = "Toggle VSCode-like file explorer"
+    desc = "Toggle VSCode-like file explorer"
 })
 
 return M

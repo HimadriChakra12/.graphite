@@ -46,7 +46,7 @@
 	"copy":	[],
 	"startup":	[],
 	"hostname":	"graphity",
-	"timezone":	"",
+	"timezone":	"Pacific Standard Time",
 	"hooks":	{
 	},
 	"git_repo":	"",
@@ -59,5 +59,148 @@
 	"scoop_buckets":	[{
 			"name":	"Hex",
 			"url":	"https://github.com/HimadriChakra12/Hex.git"
-		}]
+		}],
+	"env_vars":	[{
+			"name":	"ALLUSERSPROFILE",
+			"value":	"C:\\ProgramData"
+		}, {
+			"name":	"APPDATA",
+			"value":	"C:\\Users\\himadri\\AppData\\Roaming"
+		}, {
+			"name":	"ChocolateyInstall",
+			"value":	"C:\\ProgramData\\chocolatey"
+		}, {
+			"name":	"ChocolateyLastPathUpdate",
+			"value":	"133958379134293678"
+		}, {
+			"name":	"ChocolateyToolsLocation",
+			"value":	"C:\\tools"
+		}, {
+			"name":	"CommonProgramFiles",
+			"value":	"C:\\Program Files\\Common Files"
+		}, {
+			"name":	"CommonProgramFiles(x86)",
+			"value":	"C:\\Program Files (x86)\\Common Files"
+		}, {
+			"name":	"CommonProgramW6432",
+			"value":	"C:\\Program Files\\Common Files"
+		}, {
+			"name":	"COMPUTERNAME",
+			"value":	"GRAPHITY"
+		}, {
+			"name":	"ComSpec",
+			"value":	"C:\\Windows\\system32\\cmd.exe"
+		}, {
+			"name":	"DriverData",
+			"value":	"C:\\Windows\\System32\\Drivers\\DriverData"
+		}, {
+			"name":	"GOPATH",
+			"value":	"C:\\Users\\himadri\\go"
+		}, {
+			"name":	"HOMEDRIVE",
+			"value":	"C:"
+		}, {
+			"name":	"HOMEPATH",
+			"value":	"\\Users\\himadri"
+		}, {
+			"name":	"JD2_HOME",
+			"value":	"C:\\Program Files\\JDownloader"
+		}, {
+			"name":	"LOCALAPPDATA",
+			"value":	"C:\\Users\\himadri\\AppData\\Local"
+		}, {
+			"name":	"LOGONSERVER",
+			"value":	"\\\\GRAPHITY"
+		}, {
+			"name":	"NUMBER_OF_PROCESSORS",
+			"value":	"8"
+		}, {
+			"name":	"OS",
+			"value":	"Windows_NT"
+		}, {
+			"name":	"Path",
+			"value":	"C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.5.2.0_x64__8wekyb3d8bbwe;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\glzr.io\\GlazeWM\\\\cli;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\gsudo\\Current;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\PowerShell\\7\\;C:\\Program Files\\GitHub CLI\\;C:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Yarn\\bin\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Go\\bin;C:\\Program Files\\Cloudflare\\Cloudflare WARP\\;C:\\Program Files\\Neovim\\bin;C:\\Program Files\\PowerShell\\7;C:\\Program Files\\glzr.io\\GlazeWM\\\\cli;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\gsudo\\Current;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\PowerShell\\7\\;C:\\Program Files\\Neovim\\bin;C:\\Program Files\\GitHub CLI\\;C:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Yarn\\bin\\;C:\\Program Files\\Cloudflare\\Cloudflare WARP\\;C:\\Users\\himadri\\scoop\\shims;C:\\Users\\himadri\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WindowsApps;;C:/farm;C:/farm/wheats/Swissknife;C:/farm/wheats/firejockey;C:/farm/wheats/wnvsh;C:/farm/wheats/pencil;C:\\MinGW\\bin;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WinGet\\Packages\\ajeetdsouza.zoxide_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WinGet\\Links;;C:\\Users\\himadri\\AppData\\Local\\Programs\\CAT CLI;;C:\\tools\\msys64;C:\\Users\\himadri\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\Oracle\\VirtualBox;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Fastfetch-cli.Fastfetch_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\himadri\\.dotnet\\tools;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WinGet\\Packages\\JesseDuffield.lazygit_Microsoft.Winget.Source_8wekyb3d8bbwe;;C:\\Windows\\System32\\Sysprep\\sysprep.exe;C:\\Windows\\System32\\Sysprep;C:\\Program Files\\Mozilla Firefox;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WinGet\\Packages\\gsass1.NTop_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\himadri\\go\\bin;C:/farm/wheats/winwery"
+		}, {
+			"name":	"PATHEXT",
+			"value":	".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL"
+		}, {
+			"name":	"POWERSHELL_DISTRIBUTION_CHANNEL",
+			"value":	"MSI:Windows 10 IoT Enterprise LTSC 2021"
+		}, {
+			"name":	"POWERSHELL_TELEMETRY_OPTOUT",
+			"value":	"1"
+		}, {
+			"name":	"PROCESSOR_ARCHITECTURE",
+			"value":	"AMD64"
+		}, {
+			"name":	"PROCESSOR_IDENTIFIER",
+			"value":	"Intel64 Family 6 Model 42 Stepping 7, GenuineIntel"
+		}, {
+			"name":	"PROCESSOR_LEVEL",
+			"value":	"6"
+		}, {
+			"name":	"PROCESSOR_REVISION",
+			"value":	"2a07"
+		}, {
+			"name":	"ProgramData",
+			"value":	"C:\\ProgramData"
+		}, {
+			"name":	"ProgramFiles",
+			"value":	"C:\\Program Files"
+		}, {
+			"name":	"ProgramFiles(x86)",
+			"value":	"C:\\Program Files (x86)"
+		}, {
+			"name":	"ProgramW6432",
+			"value":	"C:\\Program Files"
+		}, {
+			"name":	"PSModulePath",
+			"value":	"C:\\Users\\himadri\\Documents\\PowerShell\\Modules;C:\\Program Files\\PowerShell\\Modules;c:\\program files\\windowsapps\\microsoft.powershell_7.5.2.0_x64__8wekyb3d8bbwe\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules"
+		}, {
+			"name":	"PUBLIC",
+			"value":	"C:\\Users\\Public"
+		}, {
+			"name":	"SESSIONNAME",
+			"value":	"Console"
+		}, {
+			"name":	"SystemDrive",
+			"value":	"C:"
+		}, {
+			"name":	"SystemRoot",
+			"value":	"C:\\Windows"
+		}, {
+			"name":	"TEMP",
+			"value":	"C:\\Users\\himadri\\AppData\\Local\\Temp"
+		}, {
+			"name":	"TMP",
+			"value":	"C:\\Users\\himadri\\AppData\\Local\\Temp"
+		}, {
+			"name":	"USERDOMAIN",
+			"value":	"GRAPHITY"
+		}, {
+			"name":	"USERDOMAIN_ROAMINGPROFILE",
+			"value":	"GRAPHITY"
+		}, {
+			"name":	"USERNAME",
+			"value":	"himadri"
+		}, {
+			"name":	"USERPROFILE",
+			"value":	"C:\\Users\\himadri"
+		}, {
+			"name":	"VBOX_MSI_INSTALL_PATH",
+			"value":	"C:\\Program Files\\Oracle\\VirtualBox\\"
+		}, {
+			"name":	"windir",
+			"value":	"C:\\Windows"
+		}, {
+			"name":	"WSLENV",
+			"value":	"WT_SESSION:WT_PROFILE_ID:"
+		}, {
+			"name":	"WT_PROFILE_ID",
+			"value":	"{574e775e-4f2a-5b96-ac1e-a2962a402336}"
+		}, {
+			"name":	"WT_SESSION",
+			"value":	"44ee608c-3393-447f-a872-b522bd6e99f9"
+		}],
+	"start_layout":	"<LayoutModificationTemplate xmlns:defaultlayout=\"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\" xmlns:start=\"http://schemas.microsoft.com/Start/2014/StartLayout\" Version=\"1\" xmlns=\"http://schemas.microsoft.com/Start/2014/LayoutModification\">\n  <LayoutOptions StartTileGroupCellWidth=\"6\" />\n  <DefaultLayoutOverride>\n    <StartLayoutCollection>\n      <defaultlayout:StartLayout GroupCellWidth=\"6\">\n        <start:Group Name=\"\">\n          <start:Tile Size=\"2x2\" Column=\"0\" Row=\"0\" AppUserModelID=\"strudel.cc-7073FAC7_r51xshwp1gsh0!App\" />\n        </start:Group>\n      </defaultlayout:StartLayout>\n    </StartLayoutCollection>\n  </DefaultLayoutOverride>\n</LayoutModificationTemplate>"
 }
