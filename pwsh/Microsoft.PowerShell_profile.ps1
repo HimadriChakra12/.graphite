@@ -90,6 +90,7 @@ if (Get-Command zoxide -ErrorAction SilentlyContinue) {
 Set-Alias -Name z -Value __zoxide_z -Option AllScope -Scope Global -Force
 Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 Set-Alias -Name gg -Value lazygit -Option AllScope -Scope Global -Force
+Set-alias -Name t -Value touch -Option AllScope -Scope Global -Force
 Set-Alias -Name ls -Value eza -Option AllScope -Scope Global -Force
 Set-Alias -Name sudo -Value gsudo -Option AllScope -Scope Global -Force
 Set-Alias -Name ll -Value Get-childitem -Option AllScope -Scope Global -Force
