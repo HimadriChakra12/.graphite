@@ -12,6 +12,10 @@
             "id": "User.copy.644BA8F2"
         },
         {
+            "command": "paste",
+            "id": "User.paste"
+        },
+        {
             "command": 
             {
                 "action": "moveFocus",
@@ -20,16 +24,8 @@
             "id": "User.moveFocus.87C324ED"
         },
         {
-            "command": "paste",
-            "id": "User.paste"
-        },
-        {
-            "command": 
-            {
-                "action": "moveFocus",
-                "direction": "down"
-            },
-            "id": "User.moveFocus.F747588A"
+            "command": "find",
+            "id": "User.find"
         },
         {
             "command": 
@@ -41,8 +37,12 @@
             "id": "User.splitPane.A6751878"
         },
         {
-            "command": "find",
-            "id": "User.find"
+            "command": 
+            {
+                "action": "moveFocus",
+                "direction": "down"
+            },
+            "id": "User.moveFocus.F747588A"
         },
         {
             "command": 
@@ -72,12 +72,12 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "id": "User.moveFocus.F747588A",
-            "keys": "ctrl+shift+j"
-        },
-        {
             "id": "User.splitPane.A6751878",
             "keys": "alt+shift+d"
+        },
+        {
+            "id": "User.moveFocus.F747588A",
+            "keys": "ctrl+shift+j"
         },
         {
             "id": "User.moveFocus.2A0DA8E0",
@@ -134,8 +134,8 @@
                 "source": "Git"
             },
             {
-                "colorScheme": "CGA",
-                "commandline": "C:\\Users\\himadri\\scoop\\apps\\musikcube\\current\\musikcube.exe",
+                "colorScheme": "Musikcube",
+                "commandline": "C:\\Users\\himadri\\scoop\\apps\\musikcube\\current\\musikcube-cmd.exe",
                 "guid": "{f114cd65-6e78-415a-a5c2-14e016eb8f68}",
                 "hidden": false,
                 "icon": "C:\\Users\\himadri\\scoop\\apps\\musikcube\\current\\musikcube.exe",
@@ -173,6 +173,18 @@
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
+            },
+            {
+                "guid": "{5fb123f1-af88-5b5c-8953-d14a8def1978}",
+                "hidden": false,
+                "name": "PowerShell 7",
+                "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
             }
         ]
     },
@@ -195,6 +207,29 @@
             "foreground": "#CCCCCC",
             "green": "#0DBC79",
             "name": "Dark+ (Copy)",
+            "purple": "#BC3FBC",
+            "red": "#CD3131",
+            "selectionBackground": "#FFFFFF",
+            "white": "#E5E5E5",
+            "yellow": "#E5E510"
+        },
+        {
+            "background": "#181814",
+            "black": "#000000",
+            "blue": "#2472C8",
+            "brightBlack": "#666666",
+            "brightBlue": "#3B8EEA",
+            "brightCyan": "#29B8DB",
+            "brightGreen": "#23D18B",
+            "brightPurple": "#D670D6",
+            "brightRed": "#F14C4C",
+            "brightWhite": "#E5E5E5",
+            "brightYellow": "#F5F543",
+            "cursorColor": "#808080",
+            "cyan": "#11A8CD",
+            "foreground": "#CCCCCC",
+            "green": "#0DBC79",
+            "name": "Musikcube",
             "purple": "#BC3FBC",
             "red": "#CD3131",
             "selectionBackground": "#FFFFFF",
