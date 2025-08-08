@@ -33,7 +33,3 @@ require("plugins.shell")
 require("plugins.pin")
 require("plugins.browser")
 
--- pacman
-require("telescope")
-require("NeoGit").setup()
-require("buffer-manager").setup()

@@ -116,10 +116,21 @@ local function add_plugin(bufnr, plugins)
       vim.ui.input({ prompt = "Enter dependencies (URLs separated by `;`), or leave empty: " }, function(dep_input)
         local deps = parse_dependencies(dep_input)
         local clean_name = name:gsub("%.nvim$", "")
-        table.insert(plugins, { name = clean_name, url = url, dependencies = deps })
+table.insert(plugins, {
+          name = clean_name,
+          url = url,
+          dependencies = deps,
+          config = function()
+            -- placeholder for config, will be written as code string below when saving
+          end,
+        })
+
         if save_plugins(plugins) then
           vim.notify("Plugin added, reloading...")
           refresh_buffer(bufnr, plugins)
+
+          -- Open plugs.lua after saving for tweaking
+          vim.cmd("edit " .. plugins_file)
         end
       end)
     end)
