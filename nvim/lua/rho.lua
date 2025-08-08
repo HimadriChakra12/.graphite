@@ -2,7 +2,6 @@
 require('keybindings')
 -- require('netwr')
 require("pacman.bricks")
-require("headlines")
 require("plugs")
 require("dashboard")
 -- require("buffer-manager").setup()
