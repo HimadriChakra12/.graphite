@@ -21,9 +21,7 @@ end
 -- Save plugins back to plugs.lua
 local function save_plugins(plugins)
   local plugs_path = plugins_file
-  local rho_path = config_path .. "/lua/rho.lua"
 
-  -- Save to plugs.lua (same as before, minus config block)
   local file = io.open(plugs_path, "w")
   if not file then
     vim.notify("Failed to save plugins file", vim.log.levels.ERROR)
@@ -42,30 +40,18 @@ local function save_plugins(plugins)
       file:write("    },\n")
     end
 
+    -- Add config block if present
+    if p.config then
+      file:write("    config = function()\n")
+      file:write(string.format("      require(%q)\n", p.name))
+      file:write("    end,\n")
+    end
+
     file:write("  },\n")
   end
   file:write("}\n")
   file:close()
 
-  -- Append require() to lua/rho.lua if not already present
-  local f = io.open(rho_path, "r")
-  local content = f and f:read("*a") or ""
-  if f then f:close() end
-
-  local out = io.open(rho_path, "a")
-  if not out then
-    vim.notify("Failed to update rho.lua", vim.log.levels.ERROR)
-    return true -- plugins file saved, so we return true
-  end
-
-  for _, p in ipairs(plugins) do
-    local line = string.format([[require("%s")]], p.name)
-    if not content:find(line, 1, true) then
-      out:write("\n" .. line)
-    end
-  end
-
-  out:close()
   return true
 end
 
@@ -121,7 +107,7 @@ table.insert(plugins, {
           url = url,
           dependencies = deps,
           config = function()
-            -- placeholder for config, will be written as code string below when saving
+              require (clean_name)
           end,
         })
 

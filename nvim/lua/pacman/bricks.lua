@@ -56,7 +56,7 @@ end
 
 -- Telescope GitHub plugin search
 function M.find_plugin()
-  vim.ui.input({ prompt = "🔍 Plugin search: " }, function(input)
+  vim.ui.input({ prompt = "Plugin search: " }, function(input)
     if not input or input == "" then return end
 
     local Job = require("plenary.job")
@@ -153,7 +153,7 @@ function M.find_plugin()
                       table.insert(plugins, { url = plugin_url })
                       plugmod.save_plugins(plugins)
                       vim.cmd("packadd " .. plugin_name)
-                      vim.notify("✅ Installed: " .. plugin_name, vim.log.levels.INFO)
+                      vim.notify("Installed: " .. plugin_name, vim.log.levels.INFO)
                     end)
                   end,
                 }):start()
