@@ -80,7 +80,11 @@ end
 
 -- Ensure a single plugin and its dependencies
 local function ensure_plugin(plugin, bufnr, done_cb)
-  if not plugin.url then done_cb(); return end
+  if not plugin.url then
+    append_lines(bufnr, { "!! Skipping plugin with no URL" })
+    done_cb()
+    return
+  end
 
   local name = extract_name(plugin.url)
   if installed[name] then done_cb(); return end
@@ -129,7 +133,15 @@ end
 
 -- Entry point: async setup
 function M.setup()
+  -- Force reload plugs.lua module to get fresh data each time
+  package.loaded["plugs"] = nil
   local plugins = require("plugs")
+
+  if type(plugins) ~= "table" or #plugins == 0 then
+    vim.notify("No plugins found in plugs.lua", vim.log.levels.WARN)
+    return
+  end
+
   local bufnr = open_output_buffer()
   append_lines(bufnr, { "/ Starting async installation...\n" })
 
@@ -138,15 +150,19 @@ function M.setup()
     local plugin = plugins[i]
     if not plugin then
       append_lines(bufnr, { "\n All plugins installed." })
+      -- Delay window close longer to let user see the output
       vim.defer_fn(function()
         for _, win in ipairs(vim.api.nvim_list_wins()) do
           if vim.api.nvim_win_get_buf(win) == bufnr then
             vim.api.nvim_win_close(win, true)
           end
         end
-      end, 500)
+      end, 3000) -- 3 seconds delay instead of 500ms
       return
     end
+
+    append_lines(bufnr, { string.format(">> Installing plugin %d/%d: %s", i, #plugins, plugin.name or "unknown") })
+
     ensure_plugin(plugin, bufnr, function()
       i = i + 1
       install_next()
@@ -155,5 +171,10 @@ function M.setup()
 
   install_next()
 end
+
+-- Register a user command
+vim.api.nvim_create_user_command("GhostInstall", function()
+  require("pacman.ghost").setup()
+end, {})
 
 return M

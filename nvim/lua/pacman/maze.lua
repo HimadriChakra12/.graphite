@@ -8,50 +8,85 @@ local function extract_name(url)
   return url:match(".*/(.-)%.git$") or url:match(".*/(.-)$")
 end
 
--- Load plugins from plugs.lua
 local function load_plugins()
   local status, plugins = pcall(dofile, plugins_file)
   if not status or type(plugins) ~= "table" then
     vim.notify("Failed to load plugin list", vim.log.levels.ERROR)
     return {}
   end
+
+  local f = io.open(plugins_file, "r")
+  if not f then return plugins end
+  local file_data = f:read("*a")
+  f:close()
+
+  for _, p in ipairs(plugins) do
+    -- Capture full config function (multi-line, braces, etc.)
+    local pat = 'name%s*=%s*"' .. p.name .. '".-config%s*=%s*(function%s*%b().-end)%s*,?'
+    local fn_block = file_data:match(pat)
+    if fn_block then
+      -- store exactly what was found, no extra comma
+      p._original_config_text = fn_block
+    end
+  end
+
   return plugins
 end
 
--- Save plugins back to plugs.lua
-local function save_plugins(plugins)
-  local plugs_path = plugins_file
+-- Append new plugin to plugs.lua without reformatting whole file
+local function append_plugin(plugin)
+  -- Read current file content
+  local f = io.open(plugins_file, "r")
+  if not f then
+    vim.notify("Failed to open plugins file for appending", vim.log.levels.ERROR)
+    return false
+  end
+  local content = f:read("*a")
+  f:close()
 
-  local file = io.open(plugs_path, "w")
-  if not file then
-    vim.notify("Failed to save plugins file", vim.log.levels.ERROR)
+  -- Find the position to insert before the final closing '}\n'
+  local insert_pos = content:match("()}\n?$")
+  if not insert_pos then
+    vim.notify("Invalid plugins file format: missing closing brace", vim.log.levels.ERROR)
     return false
   end
 
-  file:write("return {\n")
-  for _, p in ipairs(plugins) do
-    file:write(string.format("  {\n    name = %q,\n    url = %q,\n", p.name, p.url))
+  -- Build plugin text block
+  local plugin_lines = {}
+  table.insert(plugin_lines, "  {")
+  table.insert(plugin_lines, string.format('    name = %q,', plugin.name))
+  table.insert(plugin_lines, string.format('    url = %q,', plugin.url))
 
-    if p.dependencies and #p.dependencies > 0 then
-      file:write("    dependencies = {\n")
-      for _, d in ipairs(p.dependencies) do
-        file:write(string.format("      { url = %q },\n", d.url))
-      end
-      file:write("    },\n")
+  if plugin.dependencies and #plugin.dependencies > 0 then
+    table.insert(plugin_lines, "    dependencies = {")
+    for _, d in ipairs(plugin.dependencies) do
+      table.insert(plugin_lines, string.format('      { url = %q },', d.url))
     end
-
-    -- Add config block if present
-    if p.config then
-      file:write("    config = function()\n")
-      file:write(string.format("      require(%q)\n", p.name))
-      file:write("    end,\n")
-    end
-
-    file:write("  },\n")
+    table.insert(plugin_lines, "    },")
   end
-  file:write("}\n")
-  file:close()
 
+  if plugin._original_config_text then
+    table.insert(plugin_lines, "    config = " .. plugin._original_config_text)
+  elseif plugin.config then
+    table.insert(plugin_lines, "    config = function()")
+    table.insert(plugin_lines, string.format("      require(%q)", plugin.name))
+    table.insert(plugin_lines, "    end,")
+  end
+
+  table.insert(plugin_lines, "  },")
+  local plugin_text = table.concat(plugin_lines, "\n") .. "\n"
+
+  -- Insert new plugin text before closing brace
+  local new_content = content:sub(1, insert_pos - 1) .. plugin_text .. content:sub(insert_pos)
+
+  -- Write back
+  local wf = io.open(plugins_file, "w")
+  if not wf then
+    vim.notify("Failed to write plugins file", vim.log.levels.ERROR)
+    return false
+  end
+  wf:write(new_content)
+  wf:close()
   return true
 end
 
@@ -102,21 +137,34 @@ local function add_plugin(bufnr, plugins)
       vim.ui.input({ prompt = "Enter dependencies (URLs separated by `;`), or leave empty: " }, function(dep_input)
         local deps = parse_dependencies(dep_input)
         local clean_name = name:gsub("%.nvim$", "")
-table.insert(plugins, {
+
+        local new_plugin = {
           name = clean_name,
           url = url,
           dependencies = deps,
           config = function()
-              require (clean_name)
+            require(clean_name)
           end,
-        })
+        }
 
-        if save_plugins(plugins) then
+        -- Append plugin to file without rewriting all plugins
+        if append_plugin(new_plugin) then
           vim.notify("Plugin added, reloading...")
+          -- Add to plugins list in-memory for UI refresh
+          table.insert(plugins, new_plugin)
           refresh_buffer(bufnr, plugins)
 
           -- Open plugs.lua after saving for tweaking
           vim.cmd("edit " .. plugins_file)
+          vim.api.nvim_create_autocmd("BufWritePost", {
+            pattern = "plugs.lua",
+            callback = function()
+              vim.schedule(function()
+                vim.cmd("GhostInstall")
+              end)
+            end,
+            once = true, -- Run only once per session
+          })
         end
       end)
     end)
@@ -140,9 +188,42 @@ local function delete_at_cursor(bufnr, plugins)
 
     if line == plugin_line then
       table.remove(plugins, i)
-      if save_plugins(plugins) then
+
+      -- Rewrite whole file because removing requires full file update
+      local success = false
+      do
+        local file = io.open(plugins_file, "w")
+        if file then
+          file:write("return {\n")
+          for _, pl in ipairs(plugins) do
+            file:write(string.format("  {\n    name = %q,\n    url = %q,\n", pl.name, pl.url))
+            if pl.dependencies and #pl.dependencies > 0 then
+              file:write("    dependencies = {\n")
+              for _, d in ipairs(pl.dependencies) do
+                file:write(string.format("      { url = %q },\n", d.url))
+              end
+              file:write("    },\n")
+            end
+            if pl._original_config_text then
+              file:write("    config = " .. pl._original_config_text .. "\n")
+            elseif pl.config then
+              file:write("    config = function()\n")
+              file:write(string.format("      require(%q)\n", pl.name))
+              file:write("    end,\n")
+            end
+            file:write("  },\n")
+          end
+          file:write("}\n")
+          file:close()
+          success = true
+        end
+      end
+
+      if success then
         vim.notify("Plugin deleted")
         refresh_buffer(bufnr, plugins)
+      else
+        vim.notify("Failed to delete plugin", vim.log.levels.ERROR)
       end
       return
     end
@@ -153,9 +234,42 @@ local function delete_at_cursor(bufnr, plugins)
         if #p.dependencies == 0 then
           p.dependencies = nil
         end
-        if save_plugins(plugins) then
+
+        -- Rewrite whole file for dependencies too
+        local success = false
+        do
+          local file = io.open(plugins_file, "w")
+          if file then
+            file:write("return {\n")
+            for _, pl in ipairs(plugins) do
+              file:write(string.format("  {\n    name = %q,\n    url = %q,\n", pl.name, pl.url))
+              if pl.dependencies and #pl.dependencies > 0 then
+                file:write("    dependencies = {\n")
+                for _, d in ipairs(pl.dependencies) do
+                  file:write(string.format("      { url = %q },\n", d.url))
+                end
+                file:write("    },\n")
+              end
+              if pl._original_config_text then
+                file:write("    config = " .. pl._original_config_text .. "\n")
+              elseif pl.config then
+                file:write("    config = function()\n")
+                file:write(string.format("      require(%q)\n", pl.name))
+                file:write("    end,\n")
+              end
+              file:write("  },\n")
+            end
+            file:write("}\n")
+            file:close()
+            success = true
+          end
+        end
+
+        if success then
           vim.notify("Dependency deleted")
           refresh_buffer(bufnr, plugins)
+        else
+          vim.notify("Failed to delete dependency", vim.log.levels.ERROR)
         end
         return
       end
