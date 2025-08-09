@@ -59,7 +59,7 @@ local function clone_plugin_async(url, path, bufnr, on_done)
       end)
       on_done(true)
     else
-      append_lines(bufnr, { "❌ Clone failed with code: " .. tostring(code) })
+      append_lines(bufnr, { "X Clone failed with code: " .. tostring(code) })
       vim.schedule(function()
         vim.notify("x Failed: " .. extract_name(url), vim.log.levels.ERROR)
       end)
@@ -157,7 +157,7 @@ function M.setup()
             vim.api.nvim_win_close(win, true)
           end
         end
-      end, 3000) -- 3 seconds delay instead of 500ms
+      end, 500) -- 3 seconds delay instead of 500ms
       return
     end
 
