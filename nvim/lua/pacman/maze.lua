@@ -160,7 +160,16 @@ local function add_plugin(bufnr, plugins)
             pattern = "plugs.lua",
             callback = function()
               vim.schedule(function()
-                vim.cmd("GhostInstall")
+                vim.cmd("PacmanSync")
+              end)
+            end,
+            once = true, -- Run only once per session
+          })
+          vim.api.nvim_create_autocmd("BufWritePost", {
+            pattern = "plugs.lua",
+            callback = function()
+              vim.schedule(function()
+                vim.cmd("source plugs.lua")
               end)
             end,
             once = true, -- Run only once per session
@@ -283,6 +292,7 @@ end
 
 -- Git pull update
 local function update_plugins()
+  vim.notify("Syncing.....")
   local plugins = load_plugins()
   for _, plugin in ipairs(plugins) do
     local plugin_dir = vim.fn.stdpath("data") .. "/site/pack/manual/start/" .. plugin.name
@@ -299,7 +309,7 @@ local function update_plugins()
       end
     end
   end
-  vim.notify("Plugins updated via Git pull.")
+  vim.notify("Plugins Updated.")
 end
 
 -- Open plugin manager UI

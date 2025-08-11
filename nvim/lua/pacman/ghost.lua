@@ -173,8 +173,5 @@ function M.setup()
 end
 
 -- Register a user command
-vim.api.nvim_create_user_command("GhostInstall", function()
-  require("pacman.ghost").setup()
-end, {})
 
 return M
