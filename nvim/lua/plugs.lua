@@ -17,7 +17,7 @@ return {
       { url = "https://github.com/ibhagwan/fzf-lua" },
     },
     config = function()
-      require("buffer-manager").setup()
+      require("buffer-manager")
     end,
   },
   {
@@ -38,7 +38,7 @@ return {
     name = "nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter",
     config = function()
-      require("nvim-treesitter").setup()
+      require("nvim-treesitter")
     end,
   },
   {

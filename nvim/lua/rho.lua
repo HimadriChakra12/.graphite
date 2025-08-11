@@ -4,11 +4,10 @@ require('keybindings')
 require("pacman.bricks")
 require("plugs")
 require("dashboard")
--- require("buffer-manager").setup()
+require("usrcmd")
 
 -- /csode/..
 -- require("csode.options")
-require("pacman.ghost").setup()
 
 -- /lua/statusline..
 require("statusbar.style")
