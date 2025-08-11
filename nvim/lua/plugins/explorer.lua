@@ -4,11 +4,11 @@ local M = {}
 
 -- Default configuration with VSCode-like styling
 local config = {
-  width = 0.2,  -- 30% of editor width
-  height = 0.7, -- 70% of editor height
+  width = 1.0,  -- 30% of editor width
+  height = 0.2, -- 70% of editor height
   border = 'single',
   title = "  Explorer  ",
-  title_pos = "center",
+  title_pos = "left",
   dynamic_colors = true,
   bg_color = nil,
   fg_color = nil,
