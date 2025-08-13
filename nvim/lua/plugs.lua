@@ -17,7 +17,7 @@ return {
       { url = "https://github.com/ibhagwan/fzf-lua" },
     },
     config = function()
-      require("buffer-manager")
+      require("buffer-manager").setup()
     end,
   },
   {
@@ -26,26 +26,10 @@ return {
     config = function()
       require("NeoGit").setup()
     end
-  },
-  {
-    name = "Oil",
-    url = "https://github.com/stevearc/oil.nvim",
-    config = function()
-      require("Oil").setup()
-    end
-  },
-  {
+  },  {
     name = "nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-treesitter")
     end,
-  },
-  {
-    name = "headlines",
-    url = "https://github.com/lukas-reineke/headlines.nvim",
-    config = function()
-      require("headlines").setup()
-    end,
-  },
-}
+  },}

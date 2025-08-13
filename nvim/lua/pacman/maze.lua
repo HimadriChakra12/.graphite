@@ -169,7 +169,7 @@ local function add_plugin(bufnr, plugins)
             pattern = "plugs.lua",
             callback = function()
               vim.schedule(function()
-                vim.cmd("source plugs.lua")
+                vim.cmd("source lua/plugs.lua")
               end)
             end,
             once = true, -- Run only once per session
@@ -180,11 +180,21 @@ local function add_plugin(bufnr, plugins)
   end)
 end
 
--- Delete plugin or dependency
+-- Delete plugin or dependency (UI only, no file modification)
+-- Delete plugin or dependency from file and UI, preserving other plugin configs
 local function delete_at_cursor(bufnr, plugins)
   local cursor = vim.api.nvim_win_get_cursor(0)
   local line = cursor[1]
   if line == 1 then return end
+
+  -- Read full file content
+  local f = io.open(plugins_file, "r")
+  if not f then
+    vim.notify("Failed to open plugins file", vim.log.levels.ERROR)
+    return
+  end
+  local content = f:read("*a")
+  f:close()
 
   local idx = 2
   for i, p in ipairs(plugins) do
@@ -195,90 +205,46 @@ local function delete_at_cursor(bufnr, plugins)
       table.insert(dep_lines, idx + d)
     end
 
+    -- If cursor is on the plugin itself
     if line == plugin_line then
+      -- Remove the plugin block from file
+      local pat = '(%s*{%s*name%s*=%s*"' .. p.name .. '".-},?\n)'
+      content = content:gsub(pat, "", 1)
+
       table.remove(plugins, i)
+      vim.notify("Plugin deleted")
+      refresh_buffer(bufnr, plugins)
 
-      -- Rewrite whole file because removing requires full file update
-      local success = false
-      do
-        local file = io.open(plugins_file, "w")
-        if file then
-          file:write("return {\n")
-          for _, pl in ipairs(plugins) do
-            file:write(string.format("  {\n    name = %q,\n    url = %q,\n", pl.name, pl.url))
-            if pl.dependencies and #pl.dependencies > 0 then
-              file:write("    dependencies = {\n")
-              for _, d in ipairs(pl.dependencies) do
-                file:write(string.format("      { url = %q },\n", d.url))
-              end
-              file:write("    },\n")
-            end
-            if pl._original_config_text then
-              file:write("    config = " .. pl._original_config_text .. "\n")
-            elseif pl.config then
-              file:write("    config = function()\n")
-              file:write(string.format("      require(%q)\n", pl.name))
-              file:write("    end,\n")
-            end
-            file:write("  },\n")
-          end
-          file:write("}\n")
-          file:close()
-          success = true
-        end
-      end
-
-      if success then
-        vim.notify("Plugin deleted")
-        refresh_buffer(bufnr, plugins)
+      local wf = io.open(plugins_file, "w")
+      if wf then
+        wf:write(content)
+        wf:close()
       else
-        vim.notify("Failed to delete plugin", vim.log.levels.ERROR)
+        vim.notify("Failed to write plugins file", vim.log.levels.ERROR)
       end
       return
     end
 
+    -- If cursor is on a dependency
     for di, dline in ipairs(dep_lines) do
       if line == dline then
+        local dep_url = p.dependencies[di].url
+        -- Remove dependency line from file
+        local dep_pat = '({%s*url%s*=%s*"' .. dep_url .. '"%s*},?\n)'
+        content = content:gsub(dep_pat, "", 1)
+
         table.remove(p.dependencies, di)
-        if #p.dependencies == 0 then
-          p.dependencies = nil
-        end
+        if #p.dependencies == 0 then p.dependencies = nil end
 
-        -- Rewrite whole file for dependencies too
-        local success = false
-        do
-          local file = io.open(plugins_file, "w")
-          if file then
-            file:write("return {\n")
-            for _, pl in ipairs(plugins) do
-              file:write(string.format("  {\n    name = %q,\n    url = %q,\n", pl.name, pl.url))
-              if pl.dependencies and #pl.dependencies > 0 then
-                file:write("    dependencies = {\n")
-                for _, d in ipairs(pl.dependencies) do
-                  file:write(string.format("      { url = %q },\n", d.url))
-                end
-                file:write("    },\n")
-              end
-              if pl._original_config_text then
-                file:write("    config = " .. pl._original_config_text .. "\n")
-              elseif pl.config then
-                file:write("    config = function()\n")
-                file:write(string.format("      require(%q)\n", pl.name))
-                file:write("    end,\n")
-              end
-              file:write("  },\n")
-            end
-            file:write("}\n")
-            file:close()
-            success = true
-          end
-        end
+        vim.notify("Dependency deleted")
+        refresh_buffer(bufnr, plugins)
 
-        if success then
-          vim.notify("Dependency deleted")
-          refresh_buffer(bufnr, plugins)
+        local wf = io.open(plugins_file, "w")
+        if wf then
+          wf:write(content)
+          wf:close()
         else
-          vim.notify("Failed to delete dependency", vim.log.levels.ERROR)
+          vim.notify("Failed to write plugins file", vim.log.levels.ERROR)
         end
         return
       end
