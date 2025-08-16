@@ -32,4 +32,29 @@ return {
     config = function()
       require("nvim-treesitter")
     end,
-  },}
+  },  {
+    name = "Oil",
+    url = "https://github.com/stevearc/oil.nvim",
+    dependencies = {
+      { url = "https://github.com/echasnovski/mini.nvim" },
+      { url = "https://github.com/nvim-tree/nvim-web-devicons" },
+    },
+    config = function()
+        require("oil")
+    end,
+},
+  {
+    name = "Undotree",
+    url = "https://github.com/mbbill/undotree",
+    config = function()
+      require("Undotree").setup()
+    end,
+  },
+  {
+    name = "gruvbox",
+    url = "https://github.com/ellisonleao/gruvbox.nvim.git",
+    config = function()
+      require("gruvbox")
+    end,
+  },
+}
