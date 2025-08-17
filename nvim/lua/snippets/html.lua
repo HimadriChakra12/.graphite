@@ -119,9 +119,14 @@ local function expand_tag()
 end
 
 function M.setup()
-    vim.keymap.set("i", "`", function()
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "htm", "html" },
+    callback = function()
+      vim.keymap.set("i", "`", function()
         return expand_tag()
-    end, { expr = true, desc = "HTML expand with cursor inside outer tag" })
+      end, { buffer = true, expr = true, desc = "HTML expand with cursor inside outer tag" })
+    end,
+  })
 end
 
 return M

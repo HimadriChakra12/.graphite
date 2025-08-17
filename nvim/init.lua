@@ -5,9 +5,8 @@ require('rho')
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.fillchars = { eob = " " }
+vim.opt.guicursor = ""
 
-vim.lsp.buf.format = true
-vim.o.signcolumn = "yes"
 -- Better searching
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
@@ -49,6 +48,7 @@ vim.cmd [[
 vim.opt.termguicolors = true  -- Enable 24-bit colors
 vim.opt.background = "dark"   -- Set to dark mode
 vim.cmd("colorscheme gruvbox")  -- Load Gruvbox
+
 
 vim.keymap.set("n", "<leader>pm", function()
     require("pacman.maze").open()

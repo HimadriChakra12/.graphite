@@ -16,6 +16,7 @@ require("statusbar.theme")
 -- /lua/snippets..
 -- require("snippets.markdown")
 require("snippets.html").setup()
+require("snippets.swiss").setup()
 -- require("snippets.goyomd")
 
 -- lua/plugins..
