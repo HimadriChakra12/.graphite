@@ -1,44 +1,4 @@
 [{
-		"name":	"qBittorrent",
-		"id":	"qbittorrent",
-		"version":	"5.1.0"
-	}, {
-		"name":	"Jdownloader 2",
-		"id":	"jdownloader",
-		"version":	""
-	}, {
-		"name":	"AltDrag",
-		"id":	"altdrag",
-		"version":	"1.1"
-	}, {
-		"name":	"Lite XL",
-		"id":	"litexl",
-		"version":	""
-	}, {
-		"name":	"Localsend",
-		"id":	"localsend",
-		"version":	"1.17.0"
-	}, {
-		"name":	"Microsoft Powertoys",
-		"id":	"powertoys",
-		"version":	"0.91.1"
-	}, {
-		"name":	"Python 3",
-		"id":	"python3",
-		"version":	"3.13.5"
-	}, {
-		"name":	"Teracopy",
-		"id":	"teracopy",
-		"version":	"3.17"
-	}, {
-		"name":	"Twinkle Tray",
-		"id":	"twinkletray",
-		"version":	"1.16.7"
-	}, {
-		"name":	"Microsoft Direct X",
-		"id":	"directx",
-		"version":	"9.29.1974.1"
-	}, {
 		"name":	"Fxsound",
 		"id":	"fxsound",
 		"version":	"1.1.33.0"
@@ -79,7 +39,55 @@
 		"id":	"nvim",
 		"version":	"0.11.3"
 	}, {
-		"name":	"Libresprite",
+		"name":	"LibreSprite",
 		"id":	"libresprite",
-		"version":	"1.2"
+		"version":	"1.1"
+	}, {
+		"name":	"musikcube",
+		"id":	"musikcube",
+		"version":	"3.0.4"
+	}, {
+		"name":	"qBittorrent",
+		"id":	"qbittorrent",
+		"version":	"5.1.0"
+	}, {
+		"name":	"Jdownloader 2",
+		"id":	"jdownloader",
+		"version":	""
+	}, {
+		"name":	"AltDrag",
+		"id":	"altdrag",
+		"version":	"1.1"
+	}, {
+		"name":	"Lite XL",
+		"id":	"litexl",
+		"version":	""
+	}, {
+		"name":	"Localsend",
+		"id":	"localsend",
+		"version":	"1.17.0"
+	}, {
+		"name":	"Microsoft Powertoys",
+		"id":	"powertoys",
+		"version":	"0.91.1"
+	}, {
+		"name":	"Python 3",
+		"id":	"python3",
+		"version":	"3.13.5"
+	}, {
+		"name":	"Teracopy",
+		"id":	"teracopy",
+		"version":	"3.17"
+	}, {
+		"name":	"Twinkle Tray",
+		"id":	"twinkletray",
+		"version":	"1.16.7"
+	}, {
+		"name":	"Microsoft Direct X",
+		"id":	"directx",
+		"version":	"9.29.1974.1"
+	}, {
+		"name":	"Caret",
+		"id":	"caret",
+		"version":	"3.4.6"
 	}]
