@@ -380,3 +380,10 @@ fzf
 #}"'
     $wall | set-clipboard
 }
+
+function lazyreset{
+    $path = "~/appdata/local/lazygit"
+        if (test-path $Path){
+            rm $path -r -force
+        }
+}
