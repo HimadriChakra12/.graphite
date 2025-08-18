@@ -1,5 +1,13 @@
 {
  "data" : {
+           "RememberAbsoluteLocator-UpdaterFrame"                                                                     : {
+                                                                                                                         "extendedState" : null,
+                                                                                                                         "lastAccess"    : 1755518863697,
+                                                                                                                         "type"          : null,
+                                                                                                                         "x"             : 0,
+                                                                                                                         "y"             : 0,
+                                                                                                                         "valid"         : false
+                                                                                                                        },
            "RememberRelativeDialogLocator-AddLinksProgress"                                                           : {
                                                                                                                          "extendedState" : null,
                                                                                                                          "lastAccess"    : 1750483223290,
