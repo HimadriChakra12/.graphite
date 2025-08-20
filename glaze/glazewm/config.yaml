@@ -2,7 +2,7 @@ general:
   # Commands to run when the WM has started. This is useful for running a
   # script or launching another application.
   # Example: The below command launches Zebar.
-  #startup_commands: ['shell-exec zebar']
+  # startup_commands: ['shell-exec zebar']
 
   # Commands to run just before the WM is shutdown.
   # Example: The below command kills Zebar.
@@ -212,8 +212,8 @@ keybindings:
     bindings: ['alt+v']
 
   # Change focus from tiling windows -> floating -> fullscreen.
-  - commands: ['wm-cycle-focus']
-    bindings: ['alt+space']
+# - commands: ['wm-cycle-focus']
+#   bindings: ['alt+space']
 
   # Change the focused window to be floating.
   - commands: ['toggle-floating --centered']
@@ -225,11 +225,11 @@ keybindings:
 
   # Change the focused window to be fullscreen.
   - commands: ['toggle-fullscreen']
-    bindings: ['alt+f']
+    bindings: ['alt+space']
 
   # Minimize focused window.
-  - commands: ['toggle-minimized']
-    bindings: ['alt+m']
+  #- commands: ['toggle-minimized']
+  #  bindings: ['alt+m']
 
   # Close focused window.
   - commands: ['close']
@@ -252,8 +252,8 @@ keybindings:
   # Terminal and Git Bash respectively.
   - commands: ['shell-exec wt.exe']
     bindings: ['alt+enter']
-  - commands: ['shell-exec nvim']
-    bindings: ['alt+;']
+  - commands: ['shell-exec musikcube']
+    bindings: ['alt+m']
 
   # Focus the next/previous workspace defined in `workspaces` config.
   - commands: ['focus --next-workspace']
@@ -264,9 +264,6 @@ keybindings:
   # Focus the workspace that last had focus.
   - commands: ['focus --recent-workspace']
     bindings: ['alt+d']
-  - commands: ['shell-exec explorer.exe']
-    bindings: ['alt+e']
-
 
   # Change focus to a workspace defined in `workspaces` config.
   - commands: ['focus --workspace —']
