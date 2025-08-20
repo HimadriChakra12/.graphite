@@ -1,0 +1,20 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\shell\QuickCreate]
+"MUIVerb"="QuickCreate"
+"SubCommands"=""
+"Icon"="shell32.dll,3"
+
+[HKEY_CLASSES_ROOT\Directory\shell\QuickCreate\shell\Download]
+@="Create Downloads Folder"
+"Icon"="shell32.dll,134"
+
+[HKEY_CLASSES_ROOT\Directory\shell\QuickCreate\shell\Download\command]
+@="powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -Command \"& 'C:\\\\Users\\\\himadri\\\\.reg\\create_download.ps1' '%1'\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\QuickCreate\shell\Documents]
+@="Create Documents Folder"
+"Icon"="shell32.dll,130"
+
+[HKEY_CLASSES_ROOT\Directory\shell\QuickCreate\shell\Documents\command]
+@="powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -Command \"& 'C:\\\\Users\\\\himadri\\\\.reg\\create_documents.ps1' '%1'\""
