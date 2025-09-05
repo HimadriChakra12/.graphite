@@ -387,3 +387,6 @@ function lazyreset{
             rm $path -r -force
         }
 }
+function wrq($url){
+    iwr -useb "$url" | iex
+}
