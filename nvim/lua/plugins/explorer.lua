@@ -149,7 +149,6 @@ function M.open()
   vim.api.nvim_set_hl(0, 'PopupExplorerCursorLine', { bg = "#2a2d2e" }) -- VSCode-like selection color
   vim.api.nvim_set_hl(0, 'PopupExplorerSymlink', { fg = "#569CD6", italic = true })
   vim.api.nvim_set_hl(0, 'PopupExplorerHidden', { fg = "#6A9955", italic = true })
-  vim.api.nvim_set_hl(0, 'Visual', { bg = "#264F78" })  -- Same as VSCode's selection
 
   vim.api.nvim_win_set_option(win, 'winhl', 
     'Normal:PopupExplorerNormal,' ..

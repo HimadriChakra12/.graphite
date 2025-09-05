@@ -1,4 +1,4 @@
--- Quality-of-Life Keybindings
+--pin_buf Quality-of-Life Keybindings
 vim.g.mapleader = " "  -- Set leader key to Space
 
 local keymap = vim.api.nvim_set_keymap
@@ -28,6 +28,7 @@ vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { noremap = true, silent = t
 -- vim.api.nvim_set_keymap("n", "<leader>ff", ":FF<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>o', ':Telescope find_files<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fg', ':Telescope live_grep<CR>', { noremap = true, silent = true })
+--vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').buffers, { noremap = true, silent = true })   
 
 vim.keymap.set('n', '<leader>g', ':NeoGit<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>gc', ':NeoGitCommit<CR>', { noremap = true, silent = true })
@@ -53,10 +54,21 @@ vim.api.nvim_create_autocmd("CmdlineLeave", {
 vim.api.nvim_set_keymap('n', '<Leader>gfo', ':noh<CR>', { noremap = true, silent = true })
 -- Keybindings configuration
 vim.keymap.set('n', '<leader><CR>', ':TerminalPopup<CR>', {silent = true, desc = 'Toggle Terminal Popup' })
-vim.keymap.set('n', '<leader><leader>', ':BufferManager<CR>', {silent = true, desc = 'Toggle Buffer Manager Popup' })
+-- vim.keymap.set('n', '<leader><leader>', ':BufferManager<CR>', {silent = true, desc = 'Toggle Buffer Manager Popup' })
 
 vim.keymap.set('n', '<leader>Y', '"+y', {silent = true, desc = 'Toggle Terminal Popup' })
 
 vim.keymap.set("n", "<leader>fp", function()
   require("pacman.bricks").find_plugin()
 end, { desc = "Find and Add Plugin" })
+
+local pin_buf = require("plugins.bufman")
+
+-- Toggle pin for current buffer
+vim.keymap.set("n", "<leader>bp", pin_buf.toggle_pin, { desc = "Pin buffer" })
+
+-- Open pinned + normal buffer list (pinned first)
+vim.keymap.set("n", "<leader><leader>", pin_buf.buffers_with_pins, { desc = "Find buffers (pinned first)" })
+
+
+vim.keymap.set("n", "<leader>s", ":Sl<CR>", { noremap = true, silent = true })

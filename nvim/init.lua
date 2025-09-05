@@ -1,5 +1,5 @@
--- vim.keymap.set("n", "<leader>cd", require("telescope").extensions.zoxide.list)
 require('rho')
+
 
 -- Line Numbers
 vim.opt.number = true
