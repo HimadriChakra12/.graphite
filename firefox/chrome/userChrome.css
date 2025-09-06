@@ -1,0 +1,190 @@
+#navigator-toolbox {
+    height: 35px
+}
+
+#navigator-toolbox:hover,
+#navigator-toolbox:focus-within{
+}
+#main-window::before,
+#main-window::before:hover~#navigator-toolbox {
+    /* No longer auto-hides */
+}
+/* === Auto-hide Sidebar (Vertical Tabs) === */
+#sidebar-box {
+    height: 100vh;
+    border-radius: 10px;
+    padding-right: 5px
+}
+
+/* Sensitive area on left to trigger sidebar */
+#main-window::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 10px;
+    border-radius: 12px !important;
+}
+
+#main-window{
+    background-color: #292828;
+}
+/* === Rounded Border like Edge ===
+#browser {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    margin: 5px !important;
+    background-color: var(--toolbar-bgcolor);
+
+*/
+/* Optional: Remove default margin for full-screen */
+:root[sizemode="fullscreen"] #browser {
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Hide navigation buttons (Back, Forward, Reload, Home) */
+#back-button,
+#forward-button,
+#reload-button,
+#home-button {
+    display: none !important;
+}
+.titlebar-buttonbox-container,
+.titlebar-buttonbox {
+    display: none !important;
+}
+
+/* Hide navigation buttons (Back, Forward, Reload, Home)
+#urlbar {
+    opacity: 0;
+    pointer-events: none !important;
+    cursor: default !important;
+    border-radius: 12px;
+    background: rgba(44, 44, 54, 0.85);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    color: #e0e0e0 !important;
+}
+#urlbar:active,
+#urlbar:focus-within {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 200 !important;
+    opacity: 1;
+    background: rgba(60, 60, 80, 0.95);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+    color: #fff !important;
+    border: 0;
+    height: 20px;
+}
+Hide navigation buttons (Back, Forward, Reload, Home) */
+
+#urlbar {
+    opacity: 0;
+    pointer-events: none !important;
+    cursor: default !important;
+    border-radius: 15px;
+    background: rgba(44, 44, 54, 0.85);
+    color: #e0e0e0 !important;
+    max-width: 600px !important;
+    border: 0 !important;
+}
+#urlbar:active,
+#urlbar:focus-within {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 200 !important;
+    opacity: 1;
+    background: rgba(60, 60, 80, 0.95);
+    color: #fff !important;
+    border: 0;
+    border-radius: 15px;
+}
+
+#urlbar .urlbar-icon,
+#star-button-box {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+/* Increase only the typing field height */
+#urlbar-input-container {
+    padding-top: 6px !important;   /* adds vertical space */
+    padding-bottom: 6px !important;
+    margin-inline: 10px !important; 
+}
+
+#urlbar-input {
+    height: 40px !important;
+    line-height: 20px !important;  /* taller text line */
+    font-size: 14px !important;    /* readable */
+}
+
+#urlbar-input {
+  text-align: center !important;
+  margin-bottom: 1px !important;
+}
+
+
+/* Hide sidebar scrollbar but keep scrolling */
+#sidebar,
+#sidebar-box {
+    scrollbar-width: 0px !important; /* Firefox scrollbar */
+}
+
+#sidebar::-webkit-scrollbar,
+#sidebar-box::-webkit-scrollbar {
+    display: none !important; /* Chromium-based fallback */
+}
+
+/* Removes the search icon and the "This time search with" dropdown */
+#searchbar-container,
+.urlbarView-row[type="search"] {
+  display: none !important;
+}
+
+/* Hides the search engine icon inside the URL bar */
+.urlbar-icon {
+  display: none !important;
+}
+
+/* Round only the website (content area), not sidebar */
+/* userChrome.css */
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* ---- Round only the website/content area ---- */
+browser,
+browser[type="content"],
+browser[type="content-primary"],
+#appcontent browser,
+#content-deck browser,
+#browserscrollbox > browser,
+#browsers > browser {
+  border-radius: 12px !important;        /* rounding like Edge */
+  overflow: hidden !important;           /* clip page corners */
+  margin: 8px !important;                /* space from chrome edges */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25) !important; /* subtle lift */
+  background-clip: padding-box !important;
+}
+
+/* Keep the sidebar square (no rounding) */
+#sidebar,
+#sidebar-box,
+#sidebar * {
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+/* Avoid rounding toolbar/panels that might overlap */
+menupopup,
+panel,
+.popup-internal-box {
+  border-radius: 0 !important;
+}
+
