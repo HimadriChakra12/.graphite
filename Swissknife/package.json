@@ -1,7 +1,7 @@
 [{
-		"name":	"Fxsound",
-		"id":	"fxsound",
-		"version":	"1.1.33.0"
+		"name":	"Twinkle Tray",
+		"id":	"twinkletray",
+		"version":	"1.16.7"
 	}, {
 		"name":	"Github CLI",
 		"id":	"gh",
@@ -11,10 +11,6 @@
 		"id":	"legcord",
 		"version":	"1.1.5"
 	}, {
-		"name":	"VLC Media Player",
-		"id":	"vlc",
-		"version":	"3.0.21"
-	}, {
 		"name":	"Firefox",
 		"id":	"firefox",
 		"version":	""
@@ -22,10 +18,6 @@
 		"name":	"GlazeWM",
 		"id":	"glazewm",
 		"version":	"3.9.0"
-	}, {
-		"name":	"Windows Powershell",
-		"id":	"powershell",
-		"version":	"7.5.2"
 	}, {
 		"name":	"qimgv",
 		"id":	"qimgv",
@@ -67,10 +59,6 @@
 		"id":	"localsend",
 		"version":	"1.17.0"
 	}, {
-		"name":	"Microsoft Powertoys",
-		"id":	"powertoys",
-		"version":	"0.91.1"
-	}, {
 		"name":	"Python 3",
 		"id":	"python3",
 		"version":	"3.13.5"
@@ -79,21 +67,9 @@
 		"id":	"teracopy",
 		"version":	"3.17"
 	}, {
-		"name":	"Twinkle Tray",
-		"id":	"twinkletray",
-		"version":	"1.16.7"
-	}, {
-		"name":	"Microsoft Direct X",
-		"id":	"directx",
-		"version":	"9.29.1974.1"
-	}, {
 		"name":	"Caret",
 		"id":	"caret",
 		"version":	"3.4.6"
-	}, {
-		"name":	"Youtube Music",
-		"id":	"ytmusic",
-		"version":	"3.10.0"
 	}, {
 		"name":	"Flow Launcher",
 		"id":	"flowlauncher",
@@ -106,4 +82,44 @@
 		"name":	"taskbarx",
 		"id":	"taskbarx",
 		"version":	"1.7.8.0"
+	}, {
+		"name":	"Fxsound",
+		"id":	"fxsound",
+		"version":	"1.1.33.0"
+	}, {
+		"name":	"VLC Media Player",
+		"id":	"vlc",
+		"version":	"3.0.21"
+	}, {
+		"name":	"Microsoft Powertoys",
+		"id":	"powertoys",
+		"version":	"0.91.1"
+	}, {
+		"name":	"Microsoft Direct X",
+		"id":	"directx",
+		"version":	"9.29.1974.1"
+	}, {
+		"name":	"Youtube Music",
+		"id":	"ytmusic",
+		"version":	"3.10.0"
+	}, {
+		"name":	"",
+		"id":	"",
+		"version":	""
+	}, {
+		"name":	"Windows Terminal",
+		"id":	"terminal",
+		"version":	"1.23.12811.0"
+	}, {
+		"name":	"Windows Powershell",
+		"id":	"powershell7",
+		"version":	"7.5.2"
+	}, {
+		"name":	"Lazygit",
+		"id":	"lazygit",
+		"version":	"0.55.1"
+	}, {
+		"name":	"quarkdown",
+		"id":	"quarkdown",
+		"version":	"1.10.0"
 	}]
