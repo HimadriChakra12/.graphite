@@ -94,6 +94,10 @@ Set-alias -Name t -Value touch -Option AllScope -Scope Global -Force
 Set-Alias -Name ls -Value eza -Option AllScope -Scope Global -Force
 Set-Alias -Name sudo -Value gsudo -Option AllScope -Scope Global -Force
 Set-Alias -Name ll -Value Get-childitem -Option AllScope -Scope Global -Force
+Set-Alias -Name qrk -Value quarkdown -Option AllScope -Scope Global -Force
+function qrk-prev($file){
+    qrk c $file -p -w
+}
 function ..{
     cd ..
 }
@@ -128,7 +132,6 @@ function zo {
   if ($selected_item) {
     if (Test-Path -PathType Container $selected_item) {
       cd $selected_item
-      Write-Host "($pwd)" -ForegroundColor Yellow
       zo # Recursively call zo after changing directory
     } else {
       Start-Process -FilePath $selected_item
@@ -160,7 +163,7 @@ function gcl {
         [switch]$stars
     )
 
-    $targetRoot = "D:/git"
+    $targetRoot = "$($pwd)"
 
     if ($stars) {
         $lines = gh api user/starred --paginate --jq '.[].full_name'
