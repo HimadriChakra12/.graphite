@@ -53,156 +53,16 @@
 	"choco":	["yt-dlp", "msys2", "wincdemu"],
 	"scoop":	["libresprite", "caret"],
 	"winget":	[],
-	"wallpaper":	"C:\\Users\\himadri\\.wallpaper\\a_man_sitting_in_a_chair.png",
-	"lockscreen_wallpaper":	"C:\\Users\\himadri\\.graphite\\Wallpaper\\pawel-czerwinski-pC8e7FFONcI-unsplash.jpg",
+	"wallpaper":	"C:\\Users\\IT\\.graphite\\Wallpaper\\qcqKfdZ.png",
+	"lockscreen_wallpaper":	"C:\\Users\\IT\\.graphite\\Wallpaper\\brown_city_planet_w.jpg",
 	"wallpaper_interval":	5,
+	"hooks":	{
+		"pre_apply":	"powershell -NoProfile -ExecutionPolicy Bypass -Command \"Write-Output 'pre apply hook'\"",
+		"post_apply":	"powershell -NoProfile -ExecutionPolicy Bypass -Command \"& {Add-Type -AssemblyName PresentationCore; [System.Windows.Media.Fonts]::SystemFonts}\""
+	},
 	"scoop_buckets":	[{
 			"name":	"Hex",
 			"url":	"https://github.com/HimadriChakra12/Hex.git"
 		}],
-	"env_vars":	[{
-			"name":	"ALLUSERSPROFILE",
-			"value":	"C:\\ProgramData"
-		}, {
-			"name":	"APPDATA",
-			"value":	"C:\\Users\\himadri\\AppData\\Roaming"
-		}, {
-			"name":	"ChocolateyInstall",
-			"value":	"C:\\ProgramData\\chocolatey"
-		}, {
-			"name":	"ChocolateyLastPathUpdate",
-			"value":	"133958379134293678"
-		}, {
-			"name":	"ChocolateyToolsLocation",
-			"value":	"C:\\tools"
-		}, {
-			"name":	"CommonProgramFiles",
-			"value":	"C:\\Program Files\\Common Files"
-		}, {
-			"name":	"CommonProgramFiles(x86)",
-			"value":	"C:\\Program Files (x86)\\Common Files"
-		}, {
-			"name":	"CommonProgramW6432",
-			"value":	"C:\\Program Files\\Common Files"
-		}, {
-			"name":	"COMPUTERNAME",
-			"value":	"GRAPHITY"
-		}, {
-			"name":	"ComSpec",
-			"value":	"C:\\Windows\\system32\\cmd.exe"
-		}, {
-			"name":	"DriverData",
-			"value":	"C:\\Windows\\System32\\Drivers\\DriverData"
-		}, {
-			"name":	"GOPATH",
-			"value":	"C:\\Users\\himadri\\go"
-		}, {
-			"name":	"HOMEDRIVE",
-			"value":	"C:"
-		}, {
-			"name":	"HOMEPATH",
-			"value":	"\\Users\\himadri"
-		}, {
-			"name":	"JD2_HOME",
-			"value":	"C:\\Program Files\\JDownloader"
-		}, {
-			"name":	"LOCALAPPDATA",
-			"value":	"C:\\Users\\himadri\\AppData\\Local"
-		}, {
-			"name":	"LOGONSERVER",
-			"value":	"\\\\GRAPHITY"
-		}, {
-			"name":	"NUMBER_OF_PROCESSORS",
-			"value":	"8"
-		}, {
-			"name":	"OS",
-			"value":	"Windows_NT"
-		}, {
-			"name":	"Path",
-			"value":	"C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.5.2.0_x64__8wekyb3d8bbwe;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\glzr.io\\GlazeWM\\\\cli;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\gsudo\\Current;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\PowerShell\\7\\;C:\\Program Files\\GitHub CLI\\;C:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Yarn\\bin\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Go\\bin;C:\\Program Files\\Cloudflare\\Cloudflare WARP\\;C:\\Program Files\\Neovim\\bin;C:\\Program Files\\PowerShell\\7;C:\\Program Files\\glzr.io\\GlazeWM\\\\cli;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\gsudo\\Current;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\PowerShell\\7\\;C:\\Program Files\\Neovim\\bin;C:\\Program Files\\GitHub CLI\\;C:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Yarn\\bin\\;C:\\Program Files\\Cloudflare\\Cloudflare WARP\\;C:\\Users\\himadri\\scoop\\shims;C:\\Users\\himadri\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WindowsApps;;C:/farm;C:/farm/wheats/Swissknife;C:/farm/wheats/firejockey;C:/farm/wheats/wnvsh;C:/farm/wheats/pencil;C:\\MinGW\\bin;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WinGet\\Packages\\ajeetdsouza.zoxide_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WinGet\\Links;;C:\\Users\\himadri\\AppData\\Local\\Programs\\CAT CLI;;C:\\tools\\msys64;C:\\Users\\himadri\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\Oracle\\VirtualBox;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Fastfetch-cli.Fastfetch_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\himadri\\.dotnet\\tools;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WinGet\\Packages\\JesseDuffield.lazygit_Microsoft.Winget.Source_8wekyb3d8bbwe;;C:\\Windows\\System32\\Sysprep\\sysprep.exe;C:\\Windows\\System32\\Sysprep;C:\\Program Files\\Mozilla Firefox;C:\\Users\\himadri\\AppData\\Local\\Microsoft\\WinGet\\Packages\\gsass1.NTop_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\himadri\\go\\bin;C:/farm/wheats/winwery"
-		}, {
-			"name":	"PATHEXT",
-			"value":	".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL"
-		}, {
-			"name":	"POWERSHELL_DISTRIBUTION_CHANNEL",
-			"value":	"MSI:Windows 10 IoT Enterprise LTSC 2021"
-		}, {
-			"name":	"POWERSHELL_TELEMETRY_OPTOUT",
-			"value":	"1"
-		}, {
-			"name":	"PROCESSOR_ARCHITECTURE",
-			"value":	"AMD64"
-		}, {
-			"name":	"PROCESSOR_IDENTIFIER",
-			"value":	"Intel64 Family 6 Model 42 Stepping 7, GenuineIntel"
-		}, {
-			"name":	"PROCESSOR_LEVEL",
-			"value":	"6"
-		}, {
-			"name":	"PROCESSOR_REVISION",
-			"value":	"2a07"
-		}, {
-			"name":	"ProgramData",
-			"value":	"C:\\ProgramData"
-		}, {
-			"name":	"ProgramFiles",
-			"value":	"C:\\Program Files"
-		}, {
-			"name":	"ProgramFiles(x86)",
-			"value":	"C:\\Program Files (x86)"
-		}, {
-			"name":	"ProgramW6432",
-			"value":	"C:\\Program Files"
-		}, {
-			"name":	"PSModulePath",
-			"value":	"C:\\Users\\himadri\\Documents\\PowerShell\\Modules;C:\\Program Files\\PowerShell\\Modules;c:\\program files\\windowsapps\\microsoft.powershell_7.5.2.0_x64__8wekyb3d8bbwe\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules"
-		}, {
-			"name":	"PUBLIC",
-			"value":	"C:\\Users\\Public"
-		}, {
-			"name":	"SESSIONNAME",
-			"value":	"Console"
-		}, {
-			"name":	"SystemDrive",
-			"value":	"C:"
-		}, {
-			"name":	"SystemRoot",
-			"value":	"C:\\Windows"
-		}, {
-			"name":	"TEMP",
-			"value":	"C:\\Users\\himadri\\AppData\\Local\\Temp"
-		}, {
-			"name":	"TMP",
-			"value":	"C:\\Users\\himadri\\AppData\\Local\\Temp"
-		}, {
-			"name":	"USERDOMAIN",
-			"value":	"GRAPHITY"
-		}, {
-			"name":	"USERDOMAIN_ROAMINGPROFILE",
-			"value":	"GRAPHITY"
-		}, {
-			"name":	"USERNAME",
-			"value":	"himadri"
-		}, {
-			"name":	"USERPROFILE",
-			"value":	"C:\\Users\\himadri"
-		}, {
-			"name":	"VBOX_MSI_INSTALL_PATH",
-			"value":	"C:\\Program Files\\Oracle\\VirtualBox\\"
-		}, {
-			"name":	"windir",
-			"value":	"C:\\Windows"
-		}, {
-			"name":	"WSLENV",
-			"value":	"WT_SESSION:WT_PROFILE_ID:"
-		}, {
-			"name":	"WT_PROFILE_ID",
-			"value":	"{574e775e-4f2a-5b96-ac1e-a2962a402336}"
-		}, {
-			"name":	"WT_SESSION",
-			"value":	"44ee608c-3393-447f-a872-b522bd6e99f9"
-		}],
-	"start_layout":	"<LayoutModificationTemplate xmlns:defaultlayout=\"http://schemas.microsoft.com/Start/2014/FullDefaultLayout\" xmlns:start=\"http://schemas.microsoft.com/Start/2014/StartLayout\" Version=\"1\" xmlns=\"http://schemas.microsoft.com/Start/2014/LayoutModification\">\n  <LayoutOptions StartTileGroupCellWidth=\"6\" />\n  <DefaultLayoutOverride>\n    <StartLayoutCollection>\n      <defaultlayout:StartLayout GroupCellWidth=\"6\">\n        <start:Group Name=\"Productivity\">\n          <start:Tile Size=\"2x2\" Column=\"2\" Row=\"2\" AppUserModelID=\"Microsoft.Windows.Photos_8wekyb3d8bbwe!App\" />\n          <start:DesktopApplicationTile Size=\"2x2\" Column=\"0\" Row=\"2\" DesktopApplicationLinkPath=\"%ALLUSERSPROFILE%\\Microsoft\\Windows\\Start Menu\\Programs\\Microsoft Edge.lnk\" />\n          <start:Tile Size=\"2x2\" Column=\"4\" Row=\"0\" AppUserModelID=\"Microsoft.OutlookForWindows_8wekyb3d8bbwe!Microsoft.OutlookforWindows\" />\n          <start:Tile Size=\"2x2\" Column=\"4\" Row=\"2\" AppUserModelID=\"7EE7776C.LinkedInforWindows_w1wdnht996qgy!App\" />\n        </start:Group>\n        <start:Group Name=\"Explore\">\n          <start:Folder Name=\"Play\" Size=\"2x2\" Column=\"4\" Row=\"2\">\n            <start:Tile Size=\"2x2\" Column=\"0\" Row=\"0\" AppUserModelID=\"Clipchamp.Clipchamp_yxz26nhyzhsrt!App\" />\n          </start:Folder>\n          <start:Tile Size=\"2x2\" Column=\"4\" Row=\"0\" AppUserModelID=\"Microsoft.Todos_8wekyb3d8bbwe!App\" />\n          <start:Tile Size=\"2x2\" Column=\"0\" Row=\"0\" AppUserModelID=\"Microsoft.WindowsStore_8wekyb3d8bbwe!App\" />\n          <start:Tile Size=\"2x2\" Column=\"2\" Row=\"0\" AppUserModelID=\"Microsoft.WindowsCalculator_8wekyb3d8bbwe!App\" />\n        </start:Group>\n      </defaultlayout:StartLayout>\n    </StartLayoutCollection>\n  </DefaultLayoutOverride>\n</LayoutModificationTemplate>VISION=8e0a\nProgramDat",
-	"default_apps":	"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<DefaultAssociations>\n  <Association Identifier=\".arw\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".bmp\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".cr2\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".crw\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".dib\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".erf\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".gif\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".htm\" ProgId=\"MSEdgeHTM\" ApplicationName=\"Microsoft Edge\" />\n  <Association Identifier=\".html\" ProgId=\"MSEdgeHTM\" ApplicationName=\"Microsoft Edge\" />\n  <Association Identifier=\".inf\" ProgId=\"inffile\" ApplicationName=\"Notepad\" />\n  <Association Identifier=\".ini\" ProgId=\"inifile\" ApplicationName=\"Notepad\" />\n  <Association Identifier=\".jfif\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".jpe\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".jpeg\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".jpg\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".jxr\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".kdc\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".log\" ProgId=\"txtfile\" ApplicationName=\"Notepad\" />\n  <Association Identifier=\".mht\" ProgId=\"MSEdgeHTM\" ApplicationName=\"Microsoft Edge\" />\n  <Association Identifier=\".mhtml\" ProgId=\"MSEdgeHTM\" ApplicationName=\"Microsoft Edge\" />\n  <Association Identifier=\".MP2\" ProgId=\"WMP11.AssocFile.MP3\" ApplicationName=\"Windows Media Player\" />\n  <Association Identifier=\".mrw\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".nef\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".nrw\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".orf\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".pdf\" ProgId=\"MSEdgePDF\" ApplicationName=\"Microsoft Edge\" />\n  <Association Identifier=\".pef\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".png\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".ps1\" ProgId=\"Microsoft.PowerShellScript.1\" ApplicationName=\"Notepad\" />\n  <Association Identifier=\".psd1\" ProgId=\"Microsoft.PowerShellData.1\" ApplicationName=\"Notepad\" />\n  <Association Identifier=\".psm1\" ProgId=\"Microsoft.PowerShellModule.1\" ApplicationName=\"Notepad\" />\n  <Association Identifier=\".raf\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".raw\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".rw2\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".rwl\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".scp\" ProgId=\"txtfile\" ApplicationName=\"Notepad\" />\n  <Association Identifier=\".sr2\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".srw\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".svg\" ProgId=\"MSEdgeHTM\" ApplicationName=\"Microsoft Edge\" />\n  <Association Identifier=\".tif\" ProgId=\"PhotoViewer.FileAssoc.Tiff\" ApplicationName=\"Windows Photo Viewer\" />\n  <Association Identifier=\".tiff\" ProgId=\"PhotoViewer.FileAssoc.Tiff\" ApplicationName=\"Windows Photo Viewer\" />\n  <Association Identifier=\".txt\" ProgId=\"txtfile\" ApplicationName=\"Notepad\" />\n  <Association Identifier=\".url\" ProgId=\"IE.AssocFile.URL\" ApplicationName=\"Internet Browser\" />\n  <Association Identifier=\".wdp\" ProgId=\"AppX43hnxtbyyps62jhe9sqpdzxn1790zetc\" ApplicationName=\"Photos\" />\n  <Association Identifier=\".website\" ProgId=\"IE.AssocFile.WEBSITE\" ApplicationName=\"Internet Explorer\" />\n  <Association Identifier=\".wtx\" ProgId=\"txtfile\" ApplicationName=\"Notepad\" />\n  <Association Identifier=\".xml\" ProgId=\"MSEdgeHTM\" ApplicationName=\"Microsoft Edge\" />\n  <Association Identifier=\"http\" ProgId=\"FirefoxURL-308046B0AF4A39CB\" ApplicationName=\"Firefox\" />\n  <Association Identifier=\"https\" ProgId=\"FirefoxURL-308046B0AF4A39CB\" ApplicationName=\"Firefox\" />\n  <Association Identifier=\"microsoft-edge\" ProgId=\"MSEdgeHTM\" ApplicationName=\"Microsoft Edge\" />\n  <Association Identifier=\"microsoft-edge-holographic\" ProgId=\"MSEdgeHTM\" ApplicationName=\"Microsoft Edge\" />\n  <Association Identifier=\"ms-xbl-3d8b930f\" ProgId=\"MSEdgeHTM\" ApplicationName=\"Microsoft Edge\" />\n  <Association Identifier=\"read\" ProgId=\"MSEdgeHTM\" ApplicationName=\"Microsoft Edge\" />\n</DefaultAssociations>dri\\\\scoop\\\\shims;C:\\\\Users\\\\himadri\\\\AppData\\\\Local\\\\P",
-	"env_backup":	"﻿ALLUSERSPROFILE=C:\\ProgramData\nAPPDATA=C:\\Users\\IT\\AppData\\Roaming\nChocolateyInstall=C:\\ProgramData\\chocolatey\nChocolateyLastPathUpdate=134052765798672266\nChocolateyToolsLocation=C:\\tools\nCommonProgramFiles=C:\\Program Files\\Common Files\nCommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files\nCommonProgramW6432=C:\\Program Files\\Common Files\nCOMPUTERNAME=DESKTOP-0PCBHPJ\nComSpec=C:\\Windows\\system32\\cmd.exe\nDriverData=C:\\Windows\\System32\\Drivers\\DriverData\nHOMEDRIVE=C:\nHOMEPATH=\\Users\\IT\nJD2_HOME=C:\\Program Files\\JDownloader\nLOCALAPPDATA=C:\\Users\\IT\\AppData\\Local\nLOGONSERVER=\\\\DESKTOP-0PCBHPJ\nNUMBER_OF_PROCESSORS=8\nOneDrive=C:\\Users\\IT\\OneDrive\nOS=Windows_NT\nPath=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\glzr.io\\GlazeWM\\\\cli;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\gsudo\\Current;C:\\Program Files\\Neovim\\bin;C:\\Users\\IT\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\IT\\AppData\\Local\\Microsoft\\WindowsApps;;C:/farm;C:/farm/wheats/wnvsh;C:/farm/wheats/pencil;C:/farm/wheats/Swissknife;C:\\Program Files (x86)\\GitHub CLI\\;C:\\Users\\IT\\swiss\\LibreSprite;C:\\Users\\IT\\swiss\\musikcube;C:\\Users\\IT\\swiss\\Flow Launcher;C:\\Users\\IT\\swiss\\Avro Keyboard;C:\\Users\\IT\\swiss\\taskbarx\nPATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL\nPOWERSHELL_TELEMETRY_OPTOUT=1\nPROCESSOR_ARCHITECTURE=AMD64\nPROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 10, GenuineIntel\nPROCESSOR_LEVEL=6\nPROCESSOR_REVISION=8e0a\nProgramData=C:\\ProgramData\nProgramFiles=C:\\Program Files\nProgramFiles(x86)=C:\\Program Files (x86)\nProgramW6432=C:\\Program Files\nPROMPT=$p$e[1;31m# $e[0m\nPSModulePath=C:\\Users\\IT\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\nPUBLIC=C:\\Users\\Public\nSESSIONNAME=Console\nSystemDrive=C:\nSystemRoot=C:\\Windows\nTEMP=C:\\Users\\IT\\AppData\\Local\\Temp\nTMP=C:\\Users\\IT\\AppData\\Local\\Temp\nUSERDOMAIN=DESKTOP-0PCBHPJ\nUSERDOMAIN_ROAMINGPROFILE=DESKTOP-0PCBHPJ\nUSERNAME=IT\nUSERPROFILE=C:\\Users\\IT\nwindir=C:\\Windows\nZES_ENABLE_SYSMAN=1\nicationName=\\\"Photos\\\" />\\n  <Association Id"
+	"iex_scripts":	[""]
 }
