@@ -127,7 +127,7 @@
                 "z"
             ],
             "commands": [
-                "zoxide-like.jump"
+                "workbench.action.openRecent"
             ]
         },
         {
