@@ -1,2 +1,7 @@
 terminal/state.json
 nvim/plugins
+.vscode/extensions/blackboxapp.blackbox-2.8.44/node_modules
+.vscode/extensions/github.copilot-1.372.0
+.vscode/extensions/github.copilot-chat-0.30.3
+.vscode/extensions/vscodevim.vim-1.31.0
+.vscode/extensions/.obsolete
