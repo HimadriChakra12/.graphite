@@ -1,4 +1,5 @@
 require('rho')
+require('dx')
 
 
 -- Line Numbers
