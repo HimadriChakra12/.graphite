@@ -1,0 +1,142 @@
+2025-11-01 04:50:29,126 [INFO] [MainThread] [root/log.py:59]: YASB v1.8.3
+2025-11-01 04:50:29,156 [INFO] [Thread-1 (_run_server)] [cli_server/cli_server.py:212]: CLI server started v1.1.2
+2025-11-01 04:50:29,156 [INFO] [Thread-1 (_run_server)] [cli_server/cli_server.py:212]: CLI server started v1.1.2
+2025-11-01 04:50:29,171 [INFO] [MainThread] [cli_server/cli_server.py:104]: Log pipe server started
+2025-11-01 04:50:29,171 [INFO] [MainThread] [cli_server/cli_server.py:104]: Log pipe server started
+2025-11-01 04:50:29,185 [ERROR] [MainThread] [root/main.py:76]: Another instance of the YASB is already running.
+2025-11-01 04:50:52,128 [DEBUG] [MainThread] [tzlocal/win32.py:55]: Looking up time zone info from registry
+2025-11-01 04:51:04,950 [DEBUG] [MainThread] [comtypes/__init__.py:149]: CoInitializeEx(None, 2)
+2025-11-01 04:51:07,475 [ERROR] [MainThread] [root/weather.py:59]: API key or location is missing. Please provide a valid API key and location.
+2025-11-01 04:51:36,795 [DEBUG] [MainThread] [root/win32_accent.py:123]: Failed to apply settings: [WinError 0] The operation completed successfully.
+2025-11-01 04:51:37,562 [INFO] [MainThread] [root/bar_manager.py:85]: Starting WindowsNotificationEventListener...
+2025-11-01 04:51:37,616 [INFO] [MainThread] [root/bar_manager.py:85]: Starting SystemEventListener...
+2025-11-01 04:51:37,616 [INFO] [MainThread] [root/watcher.py:54]: Created file watcher for path C:\Users\IT\.config\yasb
+2025-11-01 04:51:37,958 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:215]: Starting (proactor: <_IocpProactor overlapped#=0 result#=0>)...
+2025-11-01 04:51:37,959 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:195]: Thread started
+2025-11-01 04:54:20,726 [INFO] [MainThread] [root/controller.py:15]: Reloading Application because of config change.
+2025-11-01 04:54:20,886 [INFO] [MainThread] [cli_server/cli_server.py:112]: Log pipe server stopped
+2025-11-01 04:54:20,886 [DEBUG] [MainThread] [cli_server/cli_server.py:206]: CLI server stopped
+2025-11-01 04:54:20,929 [INFO] [MainThread] [root/bar_manager.py:76]: Successfully loaded updated config and re-initialised all bars.
+2025-11-01 04:54:23,647 [INFO] [MainThread] [root/bar_manager.py:92]: Stopping WindowsNotificationEventListener...
+2025-11-01 04:54:23,648 [INFO] [MainThread] [root/bar_manager.py:92]: Stopping SystemEventListener...
+2025-11-01 04:54:23,706 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:220]: Stopping worker thread...
+2025-11-01 04:54:23,721 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:204]: Exiting thread
+2025-11-01 04:54:23,792 [DEBUG] [MainThread] [qasync._windows._IocpProactor/_windows.py:78]: Closing
+2025-11-01 04:54:28,116 [INFO] [MainThread] [root/log.py:59]: YASB v1.8.3
+2025-11-01 04:54:28,123 [INFO] [Thread-1 (_run_server)] [cli_server/cli_server.py:212]: CLI server started v1.1.2
+2025-11-01 04:54:28,125 [INFO] [MainThread] [cli_server/cli_server.py:104]: Log pipe server started
+2025-11-01 04:55:21,392 [DEBUG] [MainThread] [tzlocal/win32.py:55]: Looking up time zone info from registry
+2025-11-01 04:55:21,968 [DEBUG] [MainThread] [comtypes/__init__.py:149]: CoInitializeEx(None, 2)
+2025-11-01 04:55:23,148 [ERROR] [MainThread] [root/weather.py:59]: API key or location is missing. Please provide a valid API key and location.
+2025-11-01 04:55:42,110 [DEBUG] [MainThread] [root/win32_accent.py:123]: Failed to apply settings: [WinError 0] The operation completed successfully.
+2025-11-01 04:55:42,254 [INFO] [MainThread] [root/bar_manager.py:85]: Starting WindowsNotificationEventListener...
+2025-11-01 04:55:42,256 [INFO] [MainThread] [root/bar_manager.py:85]: Starting SystemEventListener...
+2025-11-01 04:55:42,257 [INFO] [MainThread] [root/watcher.py:54]: Created file watcher for path C:\Users\IT\.config\yasb
+2025-11-01 04:55:42,710 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:215]: Starting (proactor: <_IocpProactor overlapped#=0 result#=0>)...
+2025-11-01 04:55:42,727 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:195]: Thread started
+2025-11-01 04:57:38,951 [INFO] [MainThread] [root/controller.py:15]: Reloading Application because of config change.
+2025-11-01 04:57:39,066 [INFO] [MainThread] [cli_server/cli_server.py:112]: Log pipe server stopped
+2025-11-01 04:57:39,066 [DEBUG] [MainThread] [cli_server/cli_server.py:206]: CLI server stopped
+2025-11-01 04:57:39,273 [INFO] [MainThread] [root/bar_manager.py:76]: Successfully loaded updated config and re-initialised all bars.
+2025-11-01 04:57:41,843 [INFO] [MainThread] [root/log.py:59]: YASB v1.8.3
+2025-11-01 04:57:41,880 [INFO] [Thread-1 (_run_server)] [cli_server/cli_server.py:212]: CLI server started v1.1.2
+2025-11-01 04:57:41,890 [INFO] [MainThread] [cli_server/cli_server.py:104]: Log pipe server started
+2025-11-01 04:57:41,891 [INFO] [MainThread] [root/main.py:47]: Waiting for previous YASB instance to exit...
+2025-11-01 04:57:41,931 [INFO] [MainThread] [root/bar_manager.py:92]: Stopping WindowsNotificationEventListener...
+2025-11-01 04:57:41,932 [INFO] [MainThread] [root/bar_manager.py:92]: Stopping SystemEventListener...
+2025-11-01 04:57:42,035 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:220]: Stopping worker thread...
+2025-11-01 04:57:42,051 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:204]: Exiting thread
+2025-11-01 04:57:42,170 [DEBUG] [MainThread] [qasync._windows._IocpProactor/_windows.py:78]: Closing
+2025-11-01 04:57:42,676 [INFO] [MainThread] [root/main.py:73]: Previous instance exited, continuing startup.
+2025-11-01 04:57:50,661 [DEBUG] [MainThread] [tzlocal/win32.py:55]: Looking up time zone info from registry
+2025-11-01 04:57:50,945 [DEBUG] [MainThread] [comtypes/__init__.py:149]: CoInitializeEx(None, 2)
+2025-11-01 04:57:51,321 [ERROR] [MainThread] [root/weather.py:59]: API key or location is missing. Please provide a valid API key and location.
+2025-11-01 04:57:55,456 [DEBUG] [MainThread] [root/win32_accent.py:123]: Failed to apply settings: [WinError 0] The operation completed successfully.
+2025-11-01 04:57:55,560 [INFO] [MainThread] [root/bar_manager.py:85]: Starting WindowsNotificationEventListener...
+2025-11-01 04:57:55,562 [INFO] [MainThread] [root/bar_manager.py:85]: Starting SystemEventListener...
+2025-11-01 04:57:55,563 [INFO] [MainThread] [root/watcher.py:54]: Created file watcher for path C:\Users\IT\.config\yasb
+2025-11-01 04:57:56,399 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:215]: Starting (proactor: <_IocpProactor overlapped#=0 result#=0>)...
+2025-11-01 04:57:56,408 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:195]: Thread started
+2025-11-01 04:58:21,701 [ERROR] [MainThread] [root/config.py:124]: The file 'C:\Users\IT\.config\yasb\config.yaml' contains Parser Error(s). Please fix:
+while parsing a flow sequence
+  in "C:\Users\IT\.config\yasb\config.yaml", line 41, column 13
+expected ',' or ']', but got '<scalar>'
+  in "C:\Users\IT\.config\yasb\config.yaml", line 43, column 9
+2025-11-01 04:58:47,752 [ERROR] [MainThread] [root/config.py:124]: The file 'C:\Users\IT\.config\yasb\config.yaml' contains Parser Error(s). Please fix:
+while parsing a flow sequence
+  in "C:\Users\IT\.config\yasb\config.yaml", line 41, column 13
+expected ',' or ']', but got '<scalar>'
+  in "C:\Users\IT\.config\yasb\config.yaml", line 43, column 9
+2025-11-01 04:59:13,752 [INFO] [MainThread] [root/controller.py:15]: Reloading Application because of config change.
+2025-11-01 04:59:13,862 [INFO] [MainThread] [cli_server/cli_server.py:112]: Log pipe server stopped
+2025-11-01 04:59:13,862 [DEBUG] [MainThread] [cli_server/cli_server.py:206]: CLI server stopped
+2025-11-01 04:59:14,161 [INFO] [MainThread] [root/bar_manager.py:76]: Successfully loaded updated config and re-initialised all bars.
+2025-11-01 04:59:16,177 [INFO] [MainThread] [root/bar_manager.py:92]: Stopping WindowsNotificationEventListener...
+2025-11-01 04:59:16,178 [INFO] [MainThread] [root/bar_manager.py:92]: Stopping SystemEventListener...
+2025-11-01 04:59:16,205 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:220]: Stopping worker thread...
+2025-11-01 04:59:16,219 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:204]: Exiting thread
+2025-11-01 04:59:16,275 [DEBUG] [MainThread] [qasync._windows._IocpProactor/_windows.py:78]: Closing
+2025-11-01 04:59:16,456 [INFO] [MainThread] [root/log.py:59]: YASB v1.8.3
+2025-11-01 04:59:16,459 [INFO] [Thread-1 (_run_server)] [cli_server/cli_server.py:212]: CLI server started v1.1.2
+2025-11-01 04:59:16,465 [INFO] [MainThread] [cli_server/cli_server.py:104]: Log pipe server started
+2025-11-01 04:59:16,465 [INFO] [MainThread] [root/main.py:47]: Waiting for previous YASB instance to exit...
+2025-11-01 04:59:16,747 [INFO] [MainThread] [root/main.py:73]: Previous instance exited, continuing startup.
+2025-11-01 04:59:17,811 [DEBUG] [MainThread] [tzlocal/win32.py:55]: Looking up time zone info from registry
+2025-11-01 04:59:18,451 [DEBUG] [MainThread] [comtypes/__init__.py:149]: CoInitializeEx(None, 2)
+2025-11-01 04:59:18,987 [ERROR] [MainThread] [root/weather.py:59]: API key or location is missing. Please provide a valid API key and location.
+2025-11-01 04:59:26,210 [DEBUG] [MainThread] [root/win32_accent.py:123]: Failed to apply settings: [WinError 0] The operation completed successfully.
+2025-11-01 04:59:26,323 [INFO] [MainThread] [root/bar_manager.py:85]: Starting SystemEventListener...
+2025-11-01 04:59:26,324 [INFO] [MainThread] [root/watcher.py:54]: Created file watcher for path C:\Users\IT\.config\yasb
+2025-11-01 04:59:26,998 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:215]: Starting (proactor: <_IocpProactor overlapped#=0 result#=0>)...
+2025-11-01 04:59:27,006 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:195]: Thread started
+2025-11-01 05:00:27,919 [INFO] [MainThread] [root/controller.py:15]: Reloading Application because of config change.
+2025-11-01 05:00:28,033 [INFO] [MainThread] [cli_server/cli_server.py:112]: Log pipe server stopped
+2025-11-01 05:00:28,033 [DEBUG] [MainThread] [cli_server/cli_server.py:206]: CLI server stopped
+2025-11-01 05:00:28,049 [INFO] [MainThread] [root/bar_manager.py:76]: Successfully loaded updated config and re-initialised all bars.
+2025-11-01 05:00:29,900 [INFO] [MainThread] [root/bar_manager.py:92]: Stopping SystemEventListener...
+2025-11-01 05:00:29,911 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:220]: Stopping worker thread...
+2025-11-01 05:00:29,917 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:204]: Exiting thread
+2025-11-01 05:00:29,919 [DEBUG] [MainThread] [qasync._windows._IocpProactor/_windows.py:78]: Closing
+2025-11-01 05:00:30,195 [INFO] [MainThread] [root/log.py:59]: YASB v1.8.3
+2025-11-01 05:00:30,229 [INFO] [Thread-1 (_run_server)] [cli_server/cli_server.py:212]: CLI server started v1.1.2
+2025-11-01 05:00:30,237 [INFO] [MainThread] [cli_server/cli_server.py:104]: Log pipe server started
+2025-11-01 05:00:31,358 [DEBUG] [MainThread] [tzlocal/win32.py:55]: Looking up time zone info from registry
+2025-11-01 05:00:32,284 [DEBUG] [MainThread] [comtypes/__init__.py:149]: CoInitializeEx(None, 2)
+2025-11-01 05:00:32,990 [ERROR] [MainThread] [root/weather.py:59]: API key or location is missing. Please provide a valid API key and location.
+2025-11-01 05:00:44,932 [DEBUG] [MainThread] [root/win32_accent.py:123]: Failed to apply settings: [WinError 0] The operation completed successfully.
+2025-11-01 05:00:45,043 [INFO] [MainThread] [root/bar_manager.py:85]: Starting SystemEventListener...
+2025-11-01 05:00:45,045 [INFO] [MainThread] [root/watcher.py:54]: Created file watcher for path C:\Users\IT\.config\yasb
+2025-11-01 05:00:48,867 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:215]: Starting (proactor: <_IocpProactor overlapped#=0 result#=0>)...
+2025-11-01 05:00:48,883 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:195]: Thread started
+2025-11-01 05:04:57,889 [ERROR] [MainThread] [root/config.py:124]: The file 'C:\Users\IT\.config\yasb\config.yaml' contains Parser Error(s). Please fix:
+while parsing a flow sequence
+  in "C:\Users\IT\.config\yasb\config.yaml", line 49, column 14
+expected ',' or ']', but got '<scalar>'
+  in "C:\Users\IT\.config\yasb\config.yaml", line 59, column 12
+2025-11-01 05:05:10,761 [INFO] [MainThread] [root/controller.py:15]: Reloading Application because of config change.
+2025-11-01 05:05:10,872 [INFO] [MainThread] [cli_server/cli_server.py:112]: Log pipe server stopped
+2025-11-01 05:05:10,872 [DEBUG] [MainThread] [cli_server/cli_server.py:206]: CLI server stopped
+2025-11-01 05:05:11,075 [INFO] [MainThread] [root/bar_manager.py:76]: Successfully loaded updated config and re-initialised all bars.
+2025-11-01 05:05:12,603 [INFO] [MainThread] [root/log.py:59]: YASB v1.8.3
+2025-11-01 05:05:12,609 [INFO] [Thread-1 (_run_server)] [cli_server/cli_server.py:212]: CLI server started v1.1.2
+2025-11-01 05:05:12,625 [INFO] [MainThread] [cli_server/cli_server.py:104]: Log pipe server started
+2025-11-01 05:05:12,626 [INFO] [MainThread] [root/main.py:47]: Waiting for previous YASB instance to exit...
+2025-11-01 05:05:12,673 [INFO] [MainThread] [root/bar_manager.py:92]: Stopping SystemEventListener...
+2025-11-01 05:05:12,738 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:220]: Stopping worker thread...
+2025-11-01 05:05:12,749 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:204]: Exiting thread
+2025-11-01 05:05:12,802 [DEBUG] [MainThread] [qasync._windows._IocpProactor/_windows.py:78]: Closing
+2025-11-01 05:05:13,444 [INFO] [MainThread] [root/main.py:73]: Previous instance exited, continuing startup.
+2025-11-01 05:05:14,475 [DEBUG] [MainThread] [tzlocal/win32.py:55]: Looking up time zone info from registry
+2025-11-01 05:05:15,225 [DEBUG] [MainThread] [comtypes/__init__.py:149]: CoInitializeEx(None, 2)
+2025-11-01 05:05:15,758 [ERROR] [MainThread] [root/weather.py:59]: API key or location is missing. Please provide a valid API key and location.
+2025-11-01 05:05:20,730 [DEBUG] [MainThread] [root/win32_accent.py:123]: Failed to apply settings: [WinError 0] The operation completed successfully.
+2025-11-01 05:05:20,839 [INFO] [MainThread] [root/bar_manager.py:85]: Starting SystemEventListener...
+2025-11-01 05:05:20,841 [INFO] [MainThread] [root/watcher.py:54]: Created file watcher for path C:\Users\IT\.config\yasb
+2025-11-01 05:05:21,158 [DEBUG] [MainThread] [qasync._windows._EventPoller/_windows.py:215]: Starting (proactor: <_IocpProactor overlapped#=0 result#=0>)...
+2025-11-01 05:05:21,159 [DEBUG] [Dummy-6] [qasync._windows._EventWorker/_windows.py:195]: Thread started
+2025-11-01 07:39:49,448 [INFO] [MainThread] [root/log.py:59]: YASB v1.8.3
+2025-11-01 07:39:49,449 [INFO] [Thread-1 (_run_server)] [cli_server/cli_server.py:212]: CLI server started v1.1.2
+2025-11-01 07:39:49,450 [INFO] [MainThread] [cli_server/cli_server.py:104]: Log pipe server started
+2025-11-01 07:39:49,450 [INFO] [MainThread] [cli_server/cli_server.py:104]: Log pipe server started
+2025-11-01 07:39:49,451 [ERROR] [MainThread] [root/main.py:76]: Another instance of the YASB is already running.
+2025-11-01 07:39:49,451 [ERROR] [MainThread] [root/main.py:76]: Another instance of the YASB is already running.
