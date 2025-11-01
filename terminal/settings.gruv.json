@@ -102,7 +102,7 @@
     {
         "defaults": 
         {
-            "colorScheme": "One Half Dark",
+            "colorScheme": "Dark+ (Copy)",
             "font": 
             {
                 "face": "JetBrainsMono Nerd Font",
@@ -126,6 +126,12 @@
                 "hidden": false,
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+                "hidden": false,
+                "name": "Git Bash",
+                "source": "Git"
             },
             {
                 "colorScheme": "Musikcube",
