@@ -67,4 +67,10 @@ return {
             })
         end,
     },
+  {
+    name = "nord",
+    url = "https://github.com/shaunsingh/nord.nvim.git",
+    config = function()
+    end,
+  },
 }

@@ -47,7 +47,7 @@ vim.cmd [[
 
 vim.opt.termguicolors = true  -- Enable 24-bit colors
 vim.opt.background = "dark"   -- Set to dark mode
-vim.cmd("colorscheme gruvbox")  -- Load Gruvbox
+vim.cmd("colorscheme nord")  -- Load Gruvbox
 
 
 vim.keymap.set("n", "<leader>pm", function()
