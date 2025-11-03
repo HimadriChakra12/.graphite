@@ -1,0 +1,53 @@
+{
+  "hostname": "HOME-PC",
+  "timezone": "Bangladesh Standard Time",
+
+  "registry": [
+    {
+      "path": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Power",
+      "value_name": "CsEnabled",
+      "value_type": "REG_DWORD",
+      "value_data": "1"
+    },
+    {
+      "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+      "value_name": "SystemResponsiveness",
+      "value_type": "REG_DWORD",
+      "value_data": "20"
+    },
+    {
+      "path": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\SysMain",
+      "value_name": "Start",
+      "value_type": "REG_DWORD",
+      "value_data": "2"
+    },
+    {
+      "path": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WSearch",
+      "value_name": "Start",
+      "value_type": "REG_DWORD",
+      "value_data": "2"
+    }
+  ],
+
+  "choco": [],
+  "scoop": [],
+  "winget": [],
+
+  "iex_scripts": [
+    "powercfg /setactive scheme_balanced",
+    "net start wuauserv",
+    "net start bits",
+    "net start SysMain",
+    "net start WSearch",
+    "Set-Service SysMain -StartupType Automatic",
+    "Set-Service WSearch -StartupType Automatic"
+  ],
+
+  "hooks": {
+    "pre_apply": ""
+  },
+
+  "startup": [],
+  "git_repo": ""
+}
+

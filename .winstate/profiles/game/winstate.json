@@ -1,0 +1,91 @@
+{
+  "hostname": "GAMING-RIG",
+
+  "registry": [
+    {
+      "path": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+      "value_name": "LargeSystemCache",
+      "value_type": "REG_DWORD",
+      "value_data": "0"
+    },
+    {
+      "path": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Power",
+      "value_name": "CsEnabled",
+      "value_type": "REG_DWORD",
+      "value_data": "0"
+    },
+    {
+      "path": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers",
+      "value_name": "TdrDelay",
+      "value_type": "REG_DWORD",
+      "value_data": "10"
+    },
+    {
+      "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+      "value_name": "SystemResponsiveness",
+      "value_type": "REG_DWORD",
+      "value_data": "0"
+    },
+    {
+      "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "value_name": "GPU Priority",
+      "value_type": "REG_DWORD",
+      "value_data": "8"
+    },
+    {
+      "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "value_name": "Priority",
+      "value_type": "REG_DWORD",
+      "value_data": "6"
+    },
+    {
+      "path": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+      "value_name": "TcpAckFrequency",
+      "value_type": "REG_DWORD",
+      "value_data": "1"
+    },
+    {
+      "path": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\Interfaces",
+      "value_name": "TcpNoDelay",
+      "value_type": "REG_DWORD",
+      "value_data": "1"
+    }
+  ],
+
+  "choco": [
+    "vcredist-all",
+    "directx",
+    "msiafterburner",
+  ],
+
+  "hooks": {
+    "pre_apply": "C:\\Users\\Public\\Scripts\\gaming_prep.ps1"
+  },
+
+  "copy": [
+    {
+      "from": "C:\\Users\\Public\\Configs\\powerplan.reg",
+      "to": "C:\\Users\\Public\\powerplan.reg"
+    }
+  ],
+
+  "iex_scripts": [
+    "powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61",
+    "powercfg /setactive scheme_min",
+    "net stop wuauserv",
+    "net stop bits",
+    "net stop SysMain",
+    "Set-Service SysMain -StartupType Disabled",
+    "Set-Service WSearch -StartupType Disabled"
+  ],
+
+
+  "startup": [
+    ""
+  ],
+
+  "git_repo": "",
+  "reg_files": [],
+  "winget": []
+}
+
