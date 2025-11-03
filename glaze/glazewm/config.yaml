@@ -3,9 +3,6 @@ general:
   # script or launching another application.
   # Example: The below command launches Zebar.
   # startup_commands: ['shell-exec zebar']
-
-  # Commands to run just before the WM is shutdown.
-  # Example: The below command kills Zebar.
   #shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
 
   # Commands to run after the WM config is reloaded.
@@ -32,7 +29,7 @@ general:
   # visible in the taskbar.
   # - 'hide': Legacy method (v3.5 and earlier) that has a brief animation,
   # but has stability issues with some apps.
-  hide_method: 'cloak'
+  hide_method: 'hide'
 
 gaps:
   # Whether to scale the gaps with the DPI of the monitor.
