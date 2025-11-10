@@ -30,7 +30,7 @@ require("plugins.buffershift")
 require("plugins.explorer")
 require("plugins.zoxide").setup() 
 require("plugins.termin").setup()
---require("plugins.shell")
+require("plugins.shell")
 require("plugins.pin")
 require("plugins.browser")
 
