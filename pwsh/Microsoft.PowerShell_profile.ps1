@@ -1,3 +1,4 @@
+Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 # Utility Functions
 function Test-CommandExists {
     param($command)
@@ -311,3 +312,4 @@ function lazyreset{
 function wrq($url){
     iwr -useb "$url" | iex
 }
+
